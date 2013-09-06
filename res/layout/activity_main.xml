@@ -3,54 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-	<Button
-		android:id="@+id/btnStart"
-		android:text="开启一个番茄!"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
-	<!-- 计时界面 -->
-	<LinearLayout
-		android:orientation="vertical"
-		android:gravity="center"
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:visibility="gone"
-		android:id="@+id/TimerLayout"  >
-		<TextView
-			android:textSize="39dp"
-			android:gravity="center"
-			android:id="@+id/showText"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content" />
-		<TextView
-			android:textSize="13dp"
-			android:textStyle="italic"
-			android:gravity="center"
-			android:id="@+id/btnCancel"
-			android:text="放弃这个番茄"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" />
-	</LinearLayout>
-	<TabHost
-	    android:id="@+id/edit_item_tab_host"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent">
-	    <LinearLayout
-	        android:orientation="vertical"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:padding="5dp" >
-	        <FrameLayout
-	            android:id="@android:id/tabcontent"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:padding="5dp"
-	            android:layout_weight="1" />
-	        <TabWidget
-	            android:id="@android:id/tabs"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_weight="0" />
-	    </LinearLayout>"
-	</TabHost>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

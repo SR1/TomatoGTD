@@ -12,23 +12,16 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".activity.MainActivity" android:launchMode="singleTop">
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        <activity
+            android:name=".activity.TodaysTodo"
+        	android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity><activity android:name=".activity.test"></activity><activity
-            android:name="com.roslab.app.tomatogtd.activity.TomatoActivity"
-            android:label="@string/app_name" >
+            </intent-filter>
         </activity>
-        <service android:name=".services.AlertService">
-					<intent-filter>
-						<action android:name = "com.roslab.app.tomatogtd.services.AlertService" />
-					</intent-filter>
-				</service>
-        
-        
     </application>
-
 </manifest>

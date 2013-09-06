@@ -4,5 +4,11 @@
     <string name="app_name">TomatoGTD</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-
+    
+    <!-- 默认显示值 -->
+    <string name="default_date_format">----/--/--</string>
+    
+    <!-- 今日待办卡片 -->
+    <string name="todays_todo_start_date">开始时间: %s</string>
+    <string name="todays_todo_end_date">截止时间: %s</string>
 </resources>
