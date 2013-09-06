@@ -1,4 +1,5 @@
 ## 我想写好这个APP
 
 ### 2013/09/06 更新如下
-将每个待办以卡片方式呈现，界面模仿“听会早新闻”APP，使用ViewPager实现基本效果
+1. 将每个待办以卡片方式呈现，界面模仿“听会早新闻”APP，使用ViewPager实现基本效果
+2. 使用[Android-ViewPagerIndicator](https://github.com/JakeWharton/Android-ViewPagerIndicator)添加分页指示器
