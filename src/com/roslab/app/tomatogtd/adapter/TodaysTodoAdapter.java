@@ -24,7 +24,7 @@ public class TodaysTodoAdapter extends FragmentStatePagerAdapter {
 
 	@Override
 	public Fragment getItem(int index) {
-		return TodaysTodoFragment.newInstance(todaysTodoList.get(index%count));
+		return TodaysTodoFragment.newInstance(todaysTodoList.get(index%count),index);
 	}
 
 	@Override

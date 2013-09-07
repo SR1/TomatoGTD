@@ -28,7 +28,7 @@ public class RandomColorId {
 		size = colorList.size();
 	}
 	
-	public static int getColorId()
+	public static int getColorId(int position)
 	{
 		Random ran = new Random();
 		if (seed == null)
@@ -36,6 +36,6 @@ public class RandomColorId {
 		initColorList();
 		
 		Log.v(TAG,"on getColorId--->seed"+seed);
-		return colorList.get((++seed)%size);
+		return colorList.get((seed+position)%size);
 	}
 }

@@ -20,14 +20,16 @@ public class TodaysTodoFragment extends Fragment {
 
 	private static TodaysTodoFragment mTodaysTodoFragment;
 	private TodaysTodoItem mTodaysTodoItem;
+	private int position;
 	private TodaysTodoViewHolder holder;
 	private Integer color = null;
 	private int[] tomatoTimerLayout = {R.layout.tomato_square,R.layout.tomato_circle,R.layout.tomato_circle};
 	
 
-	public static TodaysTodoFragment newInstance(TodaysTodoItem todaysTodoItem) {
+	public static TodaysTodoFragment newInstance(TodaysTodoItem todaysTodoItem,int position) {
 		mTodaysTodoFragment = new TodaysTodoFragment();
 		mTodaysTodoFragment.mTodaysTodoItem = todaysTodoItem;
+		mTodaysTodoFragment.position = position;
 
 		Log.v(TAG, "newInstance-->");
 		return mTodaysTodoFragment;
@@ -37,8 +39,7 @@ public class TodaysTodoFragment extends Fragment {
 		
 		if(mTodaysTodoItem!=null)
 		{
-			if(color==null)
-				color = getResources().getColor(RandomColorId.getColorId());
+			color = getResources().getColor(RandomColorId.getColorId(position));
 			
 			holder.todays_todo_background.setBackgroundColor(color);
 			holder.todays_todo_title.setText(mTodaysTodoItem.getTitle());
