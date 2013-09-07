@@ -11,4 +11,5 @@
     <!-- 今日待办卡片 -->
     <string name="todays_todo_start_date">开始时间: %s</string>
     <string name="todays_todo_end_date">截止时间: %s</string>
+    <string name="todays_todo_remark">备注: </string>
 </resources>

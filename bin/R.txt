@@ -329,8 +329,6 @@ int drawable done 0x7f020071
 int drawable ic_launcher 0x7f020072
 int drawable minus 0x7f020073
 int drawable square 0x7f020074
-int drawable tomato_circle 0x7f020075
-int drawable tomato_square 0x7f020076
 int id abs__action_bar 0x7f05002a
 int id abs__action_bar_container 0x7f050029
 int id abs__action_bar_subtitle 0x7f05001b
@@ -372,6 +370,7 @@ int id abs__title 0x7f050025
 int id abs__up 0x7f05000b
 int id bottom 0x7f050018
 int id disableHome 0x7f050009
+int id done 0x7f050048
 int id edit_query 0x7f050030
 int id fullscreen 0x7f050013
 int id homeAsUp 0x7f050006
@@ -379,7 +378,7 @@ int id indicator 0x7f05003d
 int id left 0x7f050010
 int id listMode 0x7f050002
 int id margin 0x7f050012
-int id menu_settings 0x7f050045
+int id menu_settings 0x7f050049
 int id none 0x7f050015
 int id normal 0x7f050001
 int id right 0x7f050011
@@ -387,7 +386,7 @@ int id selected_view 0x7f050014
 int id showCustom 0x7f050008
 int id showHome 0x7f050005
 int id showTitle 0x7f050007
-int id slidingmenumain 0x7f050044
+int id slidingmenumain 0x7f050047
 int id tabMode 0x7f050003
 int id todays_todo_background 0x7f05003e
 int id todays_todo_end_date 0x7f050041
@@ -395,6 +394,9 @@ int id todays_todo_remark 0x7f050042
 int id todays_todo_start_date 0x7f050040
 int id todays_todo_timer_line 0x7f050043
 int id todays_todo_title 0x7f05003f
+int id todays_todo_tomato_1st 0x7f050044
+int id todays_todo_tomato_2nd 0x7f050045
+int id todays_todo_tomato_3rd 0x7f050046
 int id top 0x7f050019
 int id triangle 0x7f050016
 int id underline 0x7f050017
@@ -433,6 +435,8 @@ int layout fragment_todays_todo_item 0x7f030016
 int layout sherlock_spinner_dropdown_item 0x7f030017
 int layout sherlock_spinner_item 0x7f030018
 int layout slidingmenumain 0x7f030019
+int layout tomato_circle 0x7f03001a
+int layout tomato_square 0x7f03001b
 int menu activity_main 0x7f0c0000
 int raw alert 0x7f040000
 int string abs__action_bar_home_description 0x7f0a0000
@@ -453,6 +457,7 @@ int string default_date_format 0x7f0a0010
 int string hello_world 0x7f0a000e
 int string menu_settings 0x7f0a000f
 int string todays_todo_end_date 0x7f0a0012
+int string todays_todo_remark 0x7f0a0013
 int string todays_todo_start_date 0x7f0a0011
 int style AppBaseTheme 0x7f0b0059
 int style AppTheme 0x7f0b005a

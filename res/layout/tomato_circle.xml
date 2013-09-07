@@ -11,11 +11,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:src="@drawable/square" />
+            android:src="@drawable/circle" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
+            android:visibility="gone"
             android:src="@drawable/done" />
     </FrameLayout>
 

@@ -1346,8 +1346,6 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020072;
         public static final int minus=0x7f020073;
         public static final int square=0x7f020074;
-        public static final int tomato_circle=0x7f020075;
-        public static final int tomato_square=0x7f020076;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f05002a;
@@ -1391,6 +1389,7 @@ containing a value of this type.
         public static final int abs__up=0x7f05000b;
         public static final int bottom=0x7f050018;
         public static final int disableHome=0x7f050009;
+        public static final int done=0x7f050048;
         public static final int edit_query=0x7f050030;
         public static final int fullscreen=0x7f050013;
         public static final int homeAsUp=0x7f050006;
@@ -1398,7 +1397,7 @@ containing a value of this type.
         public static final int left=0x7f050010;
         public static final int listMode=0x7f050002;
         public static final int margin=0x7f050012;
-        public static final int menu_settings=0x7f050045;
+        public static final int menu_settings=0x7f050049;
         public static final int none=0x7f050015;
         public static final int normal=0x7f050001;
         public static final int right=0x7f050011;
@@ -1406,7 +1405,7 @@ containing a value of this type.
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
-        public static final int slidingmenumain=0x7f050044;
+        public static final int slidingmenumain=0x7f050047;
         public static final int tabMode=0x7f050003;
         public static final int todays_todo_background=0x7f05003e;
         public static final int todays_todo_end_date=0x7f050041;
@@ -1414,6 +1413,9 @@ containing a value of this type.
         public static final int todays_todo_start_date=0x7f050040;
         public static final int todays_todo_timer_line=0x7f050043;
         public static final int todays_todo_title=0x7f05003f;
+        public static final int todays_todo_tomato_1st=0x7f050044;
+        public static final int todays_todo_tomato_2nd=0x7f050045;
+        public static final int todays_todo_tomato_3rd=0x7f050046;
         public static final int top=0x7f050019;
         public static final int triangle=0x7f050016;
         public static final int underline=0x7f050017;
@@ -1456,6 +1458,8 @@ containing a value of this type.
         public static final int sherlock_spinner_dropdown_item=0x7f030017;
         public static final int sherlock_spinner_item=0x7f030018;
         public static final int slidingmenumain=0x7f030019;
+        public static final int tomato_circle=0x7f03001a;
+        public static final int tomato_square=0x7f03001b;
     }
     public static final class menu {
         public static final int activity_main=0x7f0c0000;
@@ -1510,6 +1514,7 @@ containing a value of this type.
         public static final int hello_world=0x7f0a000e;
         public static final int menu_settings=0x7f0a000f;
         public static final int todays_todo_end_date=0x7f0a0012;
+        public static final int todays_todo_remark=0x7f0a0013;
         /**  今日待办卡片 
          */
         public static final int todays_todo_start_date=0x7f0a0011;

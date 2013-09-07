@@ -31,28 +31,50 @@ public class TodaysTodo extends FragmentActivity {
 	
 	protected void initData()
 	{
+		//TODO
+		
 		ArrayList<TodaysTodoItem> todaysTodoList= new ArrayList<TodaysTodoItem>();
-		TodaysTodoItem item = new TodaysTodoItem();
-		item.setTitle("社团APP优化");
-		item.setStartTime("2013/09/06");
+		TodaysTodoItem item;
+		item = new TodaysTodoItem();
+		item.setTitle("番茄数设置实现");
+		item.setStartTime("2013/09/07");
 		item.setEndTime("----/--/--");
+		item.setTomatoOne(5);
+		item.doneTomato();
+		item.doneTomato();
 		todaysTodoList.add(item);
+		
 		item = new TodaysTodoItem();
 		item.setTitle("阅读网管随笔第五章");
-		item.setStartTime("2013/09/06");
+		item.setStartTime("2013/09/07");
 		item.setEndTime("----/--/--");
+		item.setTomatoOne(5);
+		item.doneTomato();
+		item.doneTomato();
 		todaysTodoList.add(item);
+		
 		item = new TodaysTodoItem();
-		item.setTitle("阅读网管随笔第四章");
-		item.setStartTime("2013/09/06");
+		item.setTitle("社团APP优化");
+		item.setStartTime("2013/09/07");
 		item.setEndTime("----/--/--");
+		item.setTomatoOne(6);
+		item.doneTomato();
+		item.doneTomato();
+		item.doneTomato();
+		item.doneTomato();
+		item.doneTomato();
+		item.doneTomato();
 		todaysTodoList.add(item);
+		
 		item = new TodaysTodoItem();
-		item.setTitle("使用ViewPager完成卡片设计");
-		item.setStartTime("2013/09/06");
-		item.setEndTime("--/--/--");
-		item.setRemark("记得早点睡觉！");
+		item.setTitle("充值话费");
+		item.setStartTime("2013/09/07");
+		item.setEndTime("----/--/--");
+		item.setRemark("石头坞移动，120送480");
+		item.setTomatoOne(1);
+		item.doneTomato();
 		todaysTodoList.add(item);
+		
 		mViewPager.setAdapter(new TodaysTodoAdapter(getSupportFragmentManager(),todaysTodoList));
 		mIndicator.setViewPager(mViewPager);
 		mIndicator.setFades(false);

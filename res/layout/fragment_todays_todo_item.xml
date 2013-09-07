@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="备注: "
+                    android:text="@string/todays_todo_remark"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -86,11 +86,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:paddingLeft="10dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/white"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingLeft="10dp" >
 
         <!-- tomato to use -->
 
@@ -101,75 +101,30 @@
             android:layout_weight="1"
             android:gravity="center_vertical|left"
             android:orientation="vertical" >
-			<!-- square -->
+
+            <!-- square -->
+
             <LinearLayout
+                android:id="@+id/todays_todo_tomato_1st"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-            	android:orientation="horizontal" >
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_square" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_square" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_square" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_square" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_square" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_square" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_square" />
+                android:orientation="horizontal" >
             </LinearLayout>
-			<!-- circle -->
+            <!-- circle -->
+
             <LinearLayout
+                android:id="@+id/todays_todo_tomato_2nd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-            	android:orientation="horizontal" >
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_circle" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_circle" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_circle" />
+                android:orientation="horizontal" >
             </LinearLayout>
-			<!-- circle -->
+            <!-- circle -->
+
             <LinearLayout
+                android:id="@+id/todays_todo_tomato_3rd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-            	android:orientation="horizontal" >
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_circle" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_circle" />
-                <include
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    layout="@drawable/tomato_circle" />
+                android:orientation="horizontal" >
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -20,6 +20,8 @@ public class TodaysTodoFragment extends Fragment {
 
 	private static TodaysTodoFragment mTodaysTodoFragment;
 	private TodaysTodoItem mTodaysTodoItem;
+	private int[] tomatoTimerLayout = {R.layout.tomato_square,R.layout.tomato_circle,R.layout.tomato_circle};
+	
 
 	public static TodaysTodoFragment newInstance(TodaysTodoItem todaysTodoItem) {
 		mTodaysTodoFragment = new TodaysTodoFragment();
@@ -43,6 +45,10 @@ public class TodaysTodoFragment extends Fragment {
 		holder.todays_todo_end_date = (TextView)layout.findViewById(R.id.todays_todo_end_date);
 		holder.todays_todo_remark = (TextView)layout.findViewById(R.id.todays_todo_remark);
 		holder.todays_todo_timer_line = (ProgressBar)layout.findViewById(R.id.todays_todo_timer_line);
+		holder.todays_todo_tomato = new LinearLayout[3];
+		holder.todays_todo_tomato[0]= (LinearLayout)layout.findViewById(R.id.todays_todo_tomato_1st);
+		holder.todays_todo_tomato[1] = (LinearLayout)layout.findViewById(R.id.todays_todo_tomato_2nd);
+		holder.todays_todo_tomato[2] = (LinearLayout)layout.findViewById(R.id.todays_todo_tomato_3rd);
 		
 		if(mTodaysTodoItem!=null)
 		{
@@ -51,8 +57,20 @@ public class TodaysTodoFragment extends Fragment {
 			holder.todays_todo_start_date.setText(getString(R.string.todays_todo_start_date, mTodaysTodoItem.getStartTime()));
 			holder.todays_todo_end_date.setText(getString(R.string.todays_todo_end_date, mTodaysTodoItem.getEndTime()));
 			holder.todays_todo_remark.setText(mTodaysTodoItem.getRemark());
+			
+			for(int i=0;i<mTodaysTodoItem.getTomato().length;i++)
+			{
+				int count=0;
+				for(int v=0;v<mTodaysTodoItem.getTomato()[i];v++) {
+					View square = inflater.inflate(tomatoTimerLayout[i], null);
+					if(v<mTodaysTodoItem.getTomatoDone())
+						square.findViewById(R.id.done).setVisibility(View.VISIBLE);
+					holder.todays_todo_tomato[i].addView(square);
+					count++;
+				}
+			}
+			
 		}
-		
 		Log.v(TAG, "onCreateView-->");
 		return layout;
 	}
@@ -64,5 +82,6 @@ public class TodaysTodoFragment extends Fragment {
 		public TextView todays_todo_end_date;
 		public TextView todays_todo_remark;
 		public ProgressBar todays_todo_timer_line;
+		public LinearLayout[] todays_todo_tomato;
 	}
 }
