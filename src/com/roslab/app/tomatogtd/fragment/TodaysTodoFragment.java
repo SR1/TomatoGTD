@@ -46,13 +46,15 @@ public class TodaysTodoFragment extends Fragment {
 			holder.todays_todo_start_date.setText(getString(R.string.todays_todo_start_date, mTodaysTodoItem.getStartTime()));
 			holder.todays_todo_end_date.setText(getString(R.string.todays_todo_end_date, mTodaysTodoItem.getEndTime()));
 			holder.todays_todo_remark.setText(mTodaysTodoItem.getRemark());
-			
+
+			// 绘制预计番茄钟数
+			int count=0;
 			for(int i=0;i<mTodaysTodoItem.getTomato().length;i++)
 			{
-				int count=0;
 				for(int v=0;v<mTodaysTodoItem.getTomato()[i];v++) {
 					View square = getActivity().getLayoutInflater().inflate(tomatoTimerLayout[i], null);
-					if(v<mTodaysTodoItem.getTomatoDone())
+					// 给已经完成的番茄钟搭上×
+					if(count<mTodaysTodoItem.getTomatoDone())
 						square.findViewById(R.id.done).setVisibility(View.VISIBLE);
 					holder.todays_todo_tomato[i].addView(square);
 					count++;

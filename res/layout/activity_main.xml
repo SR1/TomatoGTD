@@ -60,11 +60,12 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|right"
                 android:background="@color/white"
-                android:gravity="center_vertical|right"
+                android:gravity="bottom|right"
                 android:layout_marginBottom="5dp"
                 android:paddingRight="15dp"
                 android:orientation="horizontal" >
                 <TextView
+                    android:id="@+id/todays_todo_start_tomato_timer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/play"
@@ -74,6 +75,7 @@
                     android:textSize="14sp"
                     android:textColor="@color/gray" />
                 <TextView
+                    android:id="@+id/todays_todo_inner_interrupt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/quote"
@@ -83,6 +85,7 @@
                     android:textSize="14sp"
                     android:textColor="@color/gray" />
                 <TextView
+                    android:id="@+id/todays_todo_outter_interrupt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/minus"
