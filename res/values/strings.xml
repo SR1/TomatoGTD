@@ -12,4 +12,9 @@
     <string name="todays_todo_start_date">开始时间: %s</string>
     <string name="todays_todo_end_date">截止时间: %s</string>
     <string name="todays_todo_remark">备注: </string>
+    
+    <!-- 今日待办操作 -->
+    <string name="todays_todo_outter_interrupt">外部中断</string>
+    <string name="todays_todo_inner_interrupt">内部中断</string>
+    <string name="todays_todo_start_tomato_timer">启动番茄钟</string>
 </resources>

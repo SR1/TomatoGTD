@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <!-- information card bottom area -->
+    <!-- information card top area -->
 
     <LinearLayout
         android:id="@+id/todays_todo_background"
