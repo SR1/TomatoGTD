@@ -1,6 +1,8 @@
 package com.roslab.app.tomatogtd.tool;
 
 public class Tools{
+	
+	public static final String TAG = "Tools";
 	//将剩余时间(毫秒)转换为 mm:ss 格式
 	public static String TransToString(long time)
 	{

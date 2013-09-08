@@ -87,18 +87,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center_vertical|left"
         android:layout_weight="1"
         android:background="@color/white"
+        android:gravity="center_vertical|left"
         android:orientation="horizontal"
         android:paddingLeft="10dp" >
 
         <!-- tomato to use -->
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical|left"
-            android:layout_weight="1"
             android:gravity="center_vertical|left"
             android:orientation="vertical" >
 
@@ -106,7 +107,7 @@
 
             <LinearLayout
                 android:id="@+id/todays_todo_tomato_1st"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
             </LinearLayout>
@@ -114,7 +115,7 @@
 
             <LinearLayout
                 android:id="@+id/todays_todo_tomato_2nd"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
             </LinearLayout>
@@ -122,11 +123,21 @@
 
             <LinearLayout
                 android:id="@+id/todays_todo_tomato_3rd"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
             </LinearLayout>
         </LinearLayout>
+        <!-- interrupt -->
+
+        <TextView
+            android:id="@+id/todays_todo_tomato_interrupt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="&apos; &apos; &apos; - - -"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>

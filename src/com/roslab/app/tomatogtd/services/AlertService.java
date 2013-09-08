@@ -10,10 +10,12 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class AlertService extends Service {
+	
+	public static final String TAG = "AlertService";
+	
 	private MediaPlayer alert;
 
 	public void onCreate() {
-		Log.v("AlertService onCreate", "");
 		super.onCreate();
 		alert = MediaPlayer.create(this, R.raw.alert);
 		alert.setOnCompletionListener(new OnCompletionListener() {
@@ -22,6 +24,7 @@ public class AlertService extends Service {
 				AlertService.this.stopSelf();
 			}
 		});
+		Log.v(TAG, "On onCreate--->");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -29,9 +32,11 @@ public class AlertService extends Service {
 		Log.v("AlertService onStart", "");
 		super.onStart(intent, startId);
 		alert.start();
+		Log.v(TAG, "On onStart--->");
 	}
 
 	public IBinder onBind(Intent arg0) {
+		Log.v(TAG, "On onBind--->");
 		return null;
 	}
 }

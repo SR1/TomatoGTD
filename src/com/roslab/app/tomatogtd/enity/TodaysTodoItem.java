@@ -1,6 +1,8 @@
 package com.roslab.app.tomatogtd.enity;
 
 public class TodaysTodoItem {
+	
+	public static final String TAG = "TodaysTodoItem";
 
 	private String title;
 	private String remark;
@@ -9,6 +11,8 @@ public class TodaysTodoItem {
 	private int[] tomato = new int[3];
 	private int total = 0;
 	private int tomatoDone = 0;
+	private int innerInterrupt = 0;
+	private int outterInterrupt = 0;
 
 	public String getTitle() {
 		return title;
@@ -65,7 +69,7 @@ public class TodaysTodoItem {
 		return tomatoDone;
 	}
 
-	public void doneTomato() {
+	public void addTomatoDone() {
 		if (tomatoDone < total) {
 			tomatoDone++;
 		}
@@ -73,5 +77,21 @@ public class TodaysTodoItem {
 
 	private void countTotal() {
 		total = tomato[0] + tomato[1] + tomato[2];
+	}
+
+	public int getInnerInterrupt() {
+		return innerInterrupt;
+	}
+
+	public void addInnerInterrupt() {
+		this.innerInterrupt++;
+	}
+
+	public int getOutterInterrupt() {
+		return outterInterrupt;
+	}
+
+	public void addOutterInterrupt() {
+		this.outterInterrupt++;
 	}
 }

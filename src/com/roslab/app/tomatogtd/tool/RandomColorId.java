@@ -10,7 +10,7 @@ import com.roslab.app.tomatogtd.R;
 
 public class RandomColorId {
 	
-	public static String TAG = "RandomColorId";
+	public static final String TAG = "RandomColorId";
 	
 	public static Integer seed;
 	public static ArrayList<Integer> colorList;

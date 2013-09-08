@@ -11,6 +11,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class TodaysTodoAdapter extends FragmentStatePagerAdapter {
 	
+	public static final String TAG = "TodaysTodoAdapter";
+	
 	private ArrayList<TodaysTodoItem> todaysTodoList;
 	private int count;
 	

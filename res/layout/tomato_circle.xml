@@ -8,9 +8,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
         <ImageView
+            android:id="@+id/plan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
+            android:visibility="gone"
             android:src="@drawable/circle" />
         <ImageView
             android:id="@+id/done"

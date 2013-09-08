@@ -2,6 +2,7 @@ package com.roslab.app.tomatogtd.activity;
 
 import java.util.ArrayList;
 
+import com.devspark.appmsg.AppMsg;
 import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.adapter.TodaysTodoAdapter;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
@@ -15,12 +16,14 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class TodaysTodo extends FragmentActivity implements OnClickListener {
+public class TodaysTodo extends FragmentActivity implements OnClickListener,
+		OnLongClickListener {
 
-	static String TAG = "TodaysTodo";
+	public static final String TAG = "TodaysTodo";
 
 	ViewPager mViewPager;
 	UnderlinePageIndicator mIndicator;
@@ -54,36 +57,28 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener {
 		TodaysTodoItem item;
 
 		item = new TodaysTodoItem();
-		item.setTitle("ÔÄ¶ÁÍø¹ÜËæ±ÊµÚ¶þÕÂ");
-		item.setStartTime("2013/09/08");
+		item.setTitle("ÇÀ¿Î");
+		item.setStartTime("2013/09/09");
 		item.setEndTime("----/--/--");
-		item.setTomatoOne(5);
-		item.setTomatoTwo(2);
-		item.doneTomato();
+		item.setTomatoOne(1);
 		todaysTodoList.add(item);
 
 		item = new TodaysTodoItem();
-		item.setTitle("È¡¿ìµÝ");
-		item.setStartTime("2013/09/08");
+		item.setTitle("ÔÄ¶ÁÍø¹ÜËæ±ÊµÚÁù¡¢ÆßÕÂ");
+		item.setStartTime("2013/09/09");
 		item.setEndTime("----/--/--");
 		item.setTomatoOne(2);
-		item.doneTomato();
-		item.doneTomato();
-		todaysTodoList.add(item);
-		
-		item = new TodaysTodoItem();
-		item.setTitle("Ï´ÒÂ·þ");
-		item.setStartTime("2013/09/08");
-		item.setEndTime("----/--/--");
-		item.setTomatoOne(2);
-		item.doneTomato();
+		item.setTomatoTwo(3);
+//		item.addTomatoDone();
+//		item.addTomatoDone();
+//		item.addTomatoDone();
 		todaysTodoList.add(item);
 
 		mViewPager.setAdapter(new TodaysTodoAdapter(
 				getSupportFragmentManager(), todaysTodoList));
 		mIndicator.setViewPager(mViewPager);
 		mIndicator.setFades(false);
-
+		
 		Log.v(TAG, "on initData--->");
 	}
 
@@ -115,6 +110,8 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.todays_todo_start_tomato_timer:
+			AppMsg appMsg = AppMsg.makeText(this, "click todays_todo_start_tomato_timer",AppMsg.STYLE_INFO);
+			appMsg.show();
 			break;
 		case R.id.todays_todo_inner_interrupt:
 			break;
@@ -123,5 +120,17 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener {
 		}
 
 		Log.v(TAG, "onClick-->");
+	}
+
+	// implement of OnLongClickListener
+	@Override
+	public boolean onLongClick(View v) {
+		switch (v.getId()) {
+		case R.id.todays_todo_inner_interrupt:
+			break;
+		case R.id.todays_todo_outter_interrupt:
+			break;
+		}
+		return false;
 	}
 }
