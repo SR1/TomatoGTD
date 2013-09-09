@@ -25,11 +25,13 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 
 	public static final String TAG = "TodaysTodo";
 
-	ViewPager mViewPager;
-	UnderlinePageIndicator mIndicator;
-	TextView startTimer;
-	TextView innerInterrupt;
-	TextView outterInterrupt;
+	private ViewPager mViewPager;
+	private UnderlinePageIndicator mIndicator;
+	private TodaysTodoAdapter mAdapter;
+	private TextView startTimer;
+	private TextView innerInterrupt;
+	private TextView outterInterrupt;
+	private ArrayList<TodaysTodoItem> todaysTodoList;
 
 	private void initComm() {
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -39,7 +41,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		outterInterrupt = (TextView) findViewById(R.id.todays_todo_outter_interrupt);
 
 		initListener();
-		Log.v(TAG, "on initComm--->");
+		Log.v(TAG, "initComm--->");
 	}
 
 	// TODO
@@ -48,12 +50,15 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		innerInterrupt.setOnClickListener(this);
 		outterInterrupt.setOnClickListener(this);
 
-		Log.v(TAG, "on initListener--->");
+		innerInterrupt.setOnLongClickListener(this);
+		outterInterrupt.setOnLongClickListener(this);
+
+		Log.v(TAG, "initListener--->");
 	}
 
-	protected void initData() {
+	protected void initTodaysTodoList() {
 		// TODO
-		ArrayList<TodaysTodoItem> todaysTodoList = new ArrayList<TodaysTodoItem>();
+		todaysTodoList = new ArrayList<TodaysTodoItem>();
 		TodaysTodoItem item;
 
 		item = new TodaysTodoItem();
@@ -61,6 +66,9 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		item.setStartTime("2013/09/09");
 		item.setEndTime("----/--/--");
 		item.setTomatoOne(1);
+		item.addInnerInterrupt();
+		item.addInnerInterrupt();
+		item.addOutterInterrupt();
 		todaysTodoList.add(item);
 
 		item = new TodaysTodoItem();
@@ -69,17 +77,31 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		item.setEndTime("----/--/--");
 		item.setTomatoOne(2);
 		item.setTomatoTwo(3);
-//		item.addTomatoDone();
-//		item.addTomatoDone();
-//		item.addTomatoDone();
+		item.addOutterInterrupt();
+		// item.addTomatoDone();
+		// item.addTomatoDone();
+		// item.addTomatoDone();
 		todaysTodoList.add(item);
 
-		mViewPager.setAdapter(new TodaysTodoAdapter(
-				getSupportFragmentManager(), todaysTodoList));
+		Log.v(TAG, "initTodaysTodoList--->");
+		initViewPager();
+	}
+
+	private void initViewPager() {
+		mAdapter = new TodaysTodoAdapter(getSupportFragmentManager(),
+				todaysTodoList);
+		mViewPager.setAdapter(mAdapter);
 		mIndicator.setViewPager(mViewPager);
 		mIndicator.setFades(false);
+
+		Log.v(TAG, "initViewPager--->");
+	}
+
+	private void initViewPager(int position) {
+		initViewPager();
+		mViewPager.setCurrentItem(position,false);
 		
-		Log.v(TAG, "on initData--->");
+		Log.v(TAG, "initViewPager & setCuttentItem--->");
 	}
 
 	@Override
@@ -87,7 +109,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initComm();
-		initData();
+		initTodaysTodoList();
 		Log.v(TAG, "onCreate-->");
 	}
 
@@ -100,7 +122,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	@Override
 	protected void onResume() {
 		super.onResume();
-		initData();
+		initViewPager();
 		Log.v(TAG, "onResume-->");
 	}
 
@@ -108,14 +130,30 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 
+		AppMsg appMsg;
+		int positon;
+
 		switch (v.getId()) {
 		case R.id.todays_todo_start_tomato_timer:
-			AppMsg appMsg = AppMsg.makeText(this, "click todays_todo_start_tomato_timer",AppMsg.STYLE_INFO);
+			appMsg = AppMsg.makeText(this,
+					"click todays_todo_start_tomato_timer", AppMsg.STYLE_INFO);
 			appMsg.show();
 			break;
 		case R.id.todays_todo_inner_interrupt:
+			appMsg = AppMsg.makeText(this, "click todays_todo_inner_interrupt",
+					AppMsg.STYLE_INFO);
+			appMsg.show();
+			positon = mViewPager.getCurrentItem();
+			todaysTodoList.get(positon).addInnerInterrupt();
+			initViewPager(positon);
 			break;
 		case R.id.todays_todo_outter_interrupt:
+			appMsg = AppMsg.makeText(this,
+					"click todays_todo_outter_interrupt", AppMsg.STYLE_INFO);
+			appMsg.show();
+			positon = mViewPager.getCurrentItem();
+			todaysTodoList.get(positon).addOutterInterrupt();
+			initViewPager(positon);
 			break;
 		}
 
@@ -125,12 +163,23 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	// implement of OnLongClickListener
 	@Override
 	public boolean onLongClick(View v) {
+
+		AppMsg appMsg;
+
 		switch (v.getId()) {
 		case R.id.todays_todo_inner_interrupt:
+			appMsg = AppMsg
+					.makeText(this, "long click todays_todo_inner_interrupt",
+							AppMsg.STYLE_INFO);
+			appMsg.show();
 			break;
 		case R.id.todays_todo_outter_interrupt:
+			appMsg = AppMsg.makeText(this,
+					"long click todays_todo_outter_interrupt",
+					AppMsg.STYLE_INFO);
+			appMsg.show();
 			break;
 		}
-		return false;
+		return true;
 	}
 }

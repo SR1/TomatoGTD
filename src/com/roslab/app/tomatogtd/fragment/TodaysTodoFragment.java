@@ -72,15 +72,18 @@ public class TodaysTodoFragment extends Fragment {
 					}
 				}
 			}
+			
+			StringBuffer interrupt = new StringBuffer("");
+			for(int i=0;i<mTodaysTodoItem.getInnerInterrupt();i++)
+				interrupt.append("' ");
+			for(int i=0;i<mTodaysTodoItem.getOutterInterrupt();i++)
+				interrupt.append("- ");
+			holder.todays_todo_tomato_interrupt.setText(interrupt.toString());
 
 		}
 	}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View layout = inflater
-				.inflate(R.layout.fragment_todays_todo_item, null);
+	private void initViewHolder(View layout) {
 
 		holder = new TodaysTodoViewHolder();
 
@@ -103,6 +106,19 @@ public class TodaysTodoFragment extends Fragment {
 				.findViewById(R.id.todays_todo_tomato_2nd);
 		holder.todays_todo_tomato[2] = (LinearLayout) layout
 				.findViewById(R.id.todays_todo_tomato_3rd);
+		holder.todays_todo_tomato_interrupt = (TextView) layout
+				.findViewById(R.id.todays_todo_tomato_interrupt);
+		
+		Log.v(TAG, "initViewHolder-->");
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View layout = inflater
+				.inflate(R.layout.fragment_todays_todo_item, null);
+
+		initViewHolder(layout);
 
 		Log.v(TAG, "onCreateView-->");
 		return layout;
@@ -121,6 +137,7 @@ public class TodaysTodoFragment extends Fragment {
 		public TextView todays_todo_end_date;
 		public TextView todays_todo_remark;
 		public ProgressBar todays_todo_timer_line;
+		public TextView todays_todo_tomato_interrupt;
 		public LinearLayout[] todays_todo_tomato;
 	}
 }
