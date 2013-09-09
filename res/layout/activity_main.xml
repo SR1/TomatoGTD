@@ -75,6 +75,16 @@
                     android:textSize="14sp"
                     android:textColor="@color/gray" />
                 <TextView
+                    android:id="@+id/todays_todo_giveup_tomato_timer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/trash"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:text="@string/todays_todo_giveup_tomato_timer"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray" />
+                <TextView
                     android:id="@+id/todays_todo_inner_interrupt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

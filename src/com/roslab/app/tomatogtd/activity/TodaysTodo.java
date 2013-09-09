@@ -39,6 +39,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	private TodaysTodoAdapter mAdapter;
 	private TimerHandler mHandler;
 	private TextView startTimer;
+	private TextView giveupTimer;
 	private TextView innerInterrupt;
 	private TextView outterInterrupt;
 	private PowerManager powerManager;
@@ -51,22 +52,27 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		startTimer = (TextView) findViewById(R.id.todays_todo_start_tomato_timer);
 		innerInterrupt = (TextView) findViewById(R.id.todays_todo_inner_interrupt);
 		outterInterrupt = (TextView) findViewById(R.id.todays_todo_outter_interrupt);
+		giveupTimer = (TextView) findViewById(R.id.todays_todo_giveup_tomato_timer);
 		// ÆÁÄ»³£ÁÁ
-		this.powerManager = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
-		this.wakeLock = this.powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "My Lock");
-
+		this.powerManager = (PowerManager) this
+				.getSystemService(Context.POWER_SERVICE);
+		this.wakeLock = this.powerManager.newWakeLock(
+				PowerManager.FULL_WAKE_LOCK, "My Lock");
 		initListener();
 		Log.v(TAG, "initComm--->");
 	}
 
 	// TODO
 	private void initListener() {
-		startTimer.setOnClickListener(this);
 		innerInterrupt.setOnClickListener(this);
 		outterInterrupt.setOnClickListener(this);
 
+		startTimer.setOnLongClickListener(this);
+		giveupTimer.setOnLongClickListener(this);
 		innerInterrupt.setOnLongClickListener(this);
 		outterInterrupt.setOnLongClickListener(this);
+		// set button viewsable state
+		setStartButtonUsable(true);
 
 		Log.v(TAG, "initListener--->");
 	}
@@ -114,6 +120,16 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		Log.v(TAG, "updateCurrentViewPager & setCuttentItem--->");
 	}
 
+	public void setStartButtonUsable(boolean usable) {
+		if (usable) {
+			startTimer.setVisibility(View.VISIBLE);
+			giveupTimer.setVisibility(View.GONE);
+		} else {
+			startTimer.setVisibility(View.GONE);
+			giveupTimer.setVisibility(View.VISIBLE);
+		}
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -136,6 +152,13 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		Log.v(TAG, "onResume-->");
 	}
 
+	@Override
+	protected void onPause() {
+		this.wakeLock.release();
+		Log.v(TAG, "onPause-->");
+		super.onPause();
+	}
+
 	// implement of OnClickListener
 	@Override
 	public void onClick(View v) {
@@ -145,16 +168,6 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 				.getCurrentItem());
 
 		switch (v.getId()) {
-		case R.id.todays_todo_start_tomato_timer:
-			appMsg = AppMsg.makeText(this,
-					"click todays_todo_start_tomato_timer", AppMsg.STYLE_INFO);
-			appMsg.show();
-			this.wakeLock.acquire();
-			if (mHandler == null) {
-				mHandler = new TimerHandler(currentItem);
-				mHandler.start();
-			}
-			break;
 		case R.id.todays_todo_inner_interrupt:
 			appMsg = AppMsg.makeText(this, "click todays_todo_inner_interrupt",
 					AppMsg.STYLE_INFO);
@@ -174,19 +187,34 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		Log.v(TAG, "onClick-->");
 	}
 
-	@Override
-	protected void onPause() {
-		this.wakeLock.release();
-		super.onPause();
-	}
-
 	// implement of OnLongClickListener
 	@Override
 	public boolean onLongClick(View v) {
 
 		AppMsg appMsg;
+		TodaysTodoItem currentItem = todaysTodoList.get(mViewPager
+				.getCurrentItem());
 
 		switch (v.getId()) {
+		case R.id.todays_todo_start_tomato_timer:
+			appMsg = AppMsg.makeText(this,
+					"click todays_todo_start_tomato_timer", AppMsg.STYLE_INFO);
+			appMsg.show();
+			if (mHandler == null) {
+				mHandler = new TimerHandler(currentItem);
+				mHandler.start();
+			}
+			setStartButtonUsable(false);
+			break;
+		case R.id.todays_todo_giveup_tomato_timer:
+			appMsg = AppMsg
+					.makeText(this, getString(R.string.todays_todo_giveup_tomato_timer_notice),
+							AppMsg.STYLE_ALERT);
+			appMsg.show();
+			if (mHandler != null) {
+				mHandler.sendEmptyMessage(TimerHandler.STOP_TIMER);
+			}
+			break;
 		case R.id.todays_todo_inner_interrupt:
 			appMsg = AppMsg
 					.makeText(this, "long click todays_todo_inner_interrupt",
@@ -208,6 +236,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	class TimerHandler extends Handler implements Runnable {
 
 		public static final int UPDATE_TIMER_VIEW = 1;
+		public static final int STOP_TIMER = 2;
 		public static final long TomatoTime = 1000 * 60 * 25;
 		private TodaysTodoItem item;
 		private long startTime;
@@ -235,8 +264,8 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		@Override
 		public void handleMessage(Message msg) {
 
-			if (msg.what == TimerHandler.UPDATE_TIMER_VIEW) {
-
+			switch (msg.what) {
+			case UPDATE_TIMER_VIEW:
 				String text = getString(
 						R.string.todays_todo_timer_remain_message,
 						item.getTitle(), getRemainTimeInMinutes());
@@ -247,12 +276,27 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 				if (isTimeUp()) {
 					TodaysTodo.this.wakeLock.release();
 					item.addTomatoDone();
-					updateCurrentViewPager();
 					mHandler = null;
 				} else {
 					sendEmptyMessageDelayed(UPDATE_TIMER_VIEW,
 							AppMsg.LENGTH_LONG);
 				}
+				setStartButtonUsable(false);
+				
+				//TODO
+				wakeLock.acquire();
+
+				Log.v(TAG, "handleMessage-->UPDATE_TIMER_VIEW");
+				break;
+			case STOP_TIMER:
+				removeMessages(UPDATE_TIMER_VIEW);
+				setStartButtonUsable(true);
+				//TODO
+				wakeLock.release();
+				mHandler = null;
+
+				Log.v(TAG, "handleMessage-->STOP_TIMER");
+				break;
 			}
 		}
 

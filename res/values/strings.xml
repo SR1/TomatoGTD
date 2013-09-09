@@ -17,5 +17,7 @@
     <string name="todays_todo_outter_interrupt">外部中断</string>
     <string name="todays_todo_inner_interrupt">内部中断</string>
     <string name="todays_todo_start_tomato_timer">启动番茄钟</string>
+    <string name="todays_todo_giveup_tomato_timer">放弃番茄钟</string>
+    <string name="todays_todo_giveup_tomato_timer_notice">番茄钟已废弃</string>
     <string name="todays_todo_timer_remain_message" formatted="false">专注 %s: 剩余 %s分钟</string>
 </resources>
