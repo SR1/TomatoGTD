@@ -174,6 +174,12 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		Log.v(TAG, "onClick-->");
 	}
 
+	@Override
+	protected void onPause() {
+		this.wakeLock.release();
+		super.onPause();
+	}
+
 	// implement of OnLongClickListener
 	@Override
 	public boolean onLongClick(View v) {
