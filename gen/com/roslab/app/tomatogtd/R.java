@@ -1535,6 +1535,7 @@ containing a value of this type.
          */
         public static final int todays_todo_start_date=0x7f0a0011;
         public static final int todays_todo_start_tomato_timer=0x7f0a0016;
+        public static final int todays_todo_timer_remain_message=0x7f0a0017;
     }
     public static final class style {
         /** 

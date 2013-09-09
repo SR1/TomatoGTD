@@ -1,16 +1,25 @@
 package com.roslab.app.tomatogtd.activity;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.devspark.appmsg.AppMsg;
 import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.adapter.TodaysTodoAdapter;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
+import com.roslab.app.tomatogtd.services.AlertService;
+import com.roslab.app.tomatogtd.tool.Tools;
 import com.roslab.app.tomatogtd.view.CirclePageIndicator;
 import com.roslab.app.tomatogtd.view.LinePageIndicator;
 import com.roslab.app.tomatogtd.view.UnderlinePageIndicator;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -28,9 +37,12 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	private ViewPager mViewPager;
 	private UnderlinePageIndicator mIndicator;
 	private TodaysTodoAdapter mAdapter;
+	private TimerHandler mHandler;
 	private TextView startTimer;
 	private TextView innerInterrupt;
 	private TextView outterInterrupt;
+	private PowerManager powerManager;
+	private WakeLock wakeLock;
 	private ArrayList<TodaysTodoItem> todaysTodoList;
 
 	private void initComm() {
@@ -39,6 +51,9 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		startTimer = (TextView) findViewById(R.id.todays_todo_start_tomato_timer);
 		innerInterrupt = (TextView) findViewById(R.id.todays_todo_inner_interrupt);
 		outterInterrupt = (TextView) findViewById(R.id.todays_todo_outter_interrupt);
+		// ÆÁÄ»³£ÁÁ
+		this.powerManager = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
+		this.wakeLock = this.powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "My Lock");
 
 		initListener();
 		Log.v(TAG, "initComm--->");
@@ -66,9 +81,6 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		item.setStartTime("2013/09/09");
 		item.setEndTime("----/--/--");
 		item.setTomatoOne(1);
-		item.addInnerInterrupt();
-		item.addInnerInterrupt();
-		item.addOutterInterrupt();
 		todaysTodoList.add(item);
 
 		item = new TodaysTodoItem();
@@ -77,10 +89,6 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		item.setEndTime("----/--/--");
 		item.setTomatoOne(2);
 		item.setTomatoTwo(3);
-		item.addOutterInterrupt();
-		// item.addTomatoDone();
-		// item.addTomatoDone();
-		// item.addTomatoDone();
 		todaysTodoList.add(item);
 
 		Log.v(TAG, "initTodaysTodoList--->");
@@ -97,11 +105,13 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		Log.v(TAG, "initViewPager--->");
 	}
 
-	private void initViewPager(int position) {
+	public void updateCurrentViewPager() {
+
+		int currentPosition = mViewPager.getCurrentItem();
 		initViewPager();
-		mViewPager.setCurrentItem(position,false);
-		
-		Log.v(TAG, "initViewPager & setCuttentItem--->");
+		mViewPager.setCurrentItem(currentPosition, false);
+
+		Log.v(TAG, "updateCurrentViewPager & setCuttentItem--->");
 	}
 
 	@Override
@@ -131,29 +141,33 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	public void onClick(View v) {
 
 		AppMsg appMsg;
-		int positon;
+		TodaysTodoItem currentItem = todaysTodoList.get(mViewPager
+				.getCurrentItem());
 
 		switch (v.getId()) {
 		case R.id.todays_todo_start_tomato_timer:
 			appMsg = AppMsg.makeText(this,
 					"click todays_todo_start_tomato_timer", AppMsg.STYLE_INFO);
 			appMsg.show();
+			this.wakeLock.acquire();
+			if (mHandler == null) {
+				mHandler = new TimerHandler(currentItem);
+				mHandler.start();
+			}
 			break;
 		case R.id.todays_todo_inner_interrupt:
 			appMsg = AppMsg.makeText(this, "click todays_todo_inner_interrupt",
 					AppMsg.STYLE_INFO);
 			appMsg.show();
-			positon = mViewPager.getCurrentItem();
-			todaysTodoList.get(positon).addInnerInterrupt();
-			initViewPager(positon);
+			currentItem.addInnerInterrupt();
+			updateCurrentViewPager();
 			break;
 		case R.id.todays_todo_outter_interrupt:
 			appMsg = AppMsg.makeText(this,
 					"click todays_todo_outter_interrupt", AppMsg.STYLE_INFO);
 			appMsg.show();
-			positon = mViewPager.getCurrentItem();
-			todaysTodoList.get(positon).addOutterInterrupt();
-			initViewPager(positon);
+			currentItem.addOutterInterrupt();
+			updateCurrentViewPager();
 			break;
 		}
 
@@ -180,6 +194,65 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 			appMsg.show();
 			break;
 		}
+
+		Log.v(TAG, "onLongClick-->");
 		return true;
+	}
+
+	class TimerHandler extends Handler implements Runnable {
+
+		public static final int UPDATE_TIMER_VIEW = 1;
+		public static final long TomatoTime = 1000 * 60 * 25;
+		private TodaysTodoItem item;
+		private long startTime;
+
+		public TimerHandler(TodaysTodoItem item) {
+			this.item = item;
+		}
+
+		public void start() {
+			sendEmptyMessage(UPDATE_TIMER_VIEW);
+			startTime = new Date().getTime();
+		}
+
+		protected boolean isTimeUp() {
+			long currentTime = new Date().getTime();
+			return currentTime > (startTime + TomatoTime);
+		}
+
+		protected String getRemainTimeInMinutes() {
+			long currentTime = new Date().getTime();
+			long remainTime = startTime - currentTime + TomatoTime;
+			return Tools.TransToMinute(remainTime);
+		}
+
+		@Override
+		public void handleMessage(Message msg) {
+
+			if (msg.what == TimerHandler.UPDATE_TIMER_VIEW) {
+
+				String text = getString(
+						R.string.todays_todo_timer_remain_message,
+						item.getTitle(), getRemainTimeInMinutes());
+				AppMsg appMsg = AppMsg.makeText(TodaysTodo.this, text,
+						AppMsg.STYLE_CONFIRM);
+				appMsg.show();
+
+				if (isTimeUp()) {
+					TodaysTodo.this.wakeLock.release();
+					item.addTomatoDone();
+					updateCurrentViewPager();
+					mHandler = null;
+				} else {
+					sendEmptyMessageDelayed(UPDATE_TIMER_VIEW,
+							AppMsg.LENGTH_LONG);
+				}
+			}
+		}
+
+		@Override
+		public void run() {
+
+		}
 	}
 }
