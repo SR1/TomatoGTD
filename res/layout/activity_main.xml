@@ -19,13 +19,22 @@
             android:layout_height="4dp"
             android:layout_gravity="bottom" />
     </FrameLayout>
+    
+    <TextView
+        android:id="@+id/todays_todo_shield"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:clickable="true"
+        android:visibility="gone"
+        android:alpha="0" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <!-- information card bottom area -->
+        <!-- operation card top area -->
 
         <LinearLayout
             android:id="@+id/todays_todo_background"
@@ -35,7 +44,7 @@
             android:orientation="vertical" >
         </LinearLayout>
 
-        <!-- infomation card bottom area -->
+        <!-- operation card bottom area -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,7 +63,7 @@
                 android:gravity="center_vertical|left"
                 android:orientation="vertical" >
             </LinearLayout>
-
+			<!-- operation -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

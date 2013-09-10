@@ -34,6 +34,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	private TextView giveupTimer;
 	private TextView innerInterrupt;
 	private TextView outterInterrupt;
+	private TextView shield;
 	private PowerManager powerManager;
 	private WakeLock wakeLock;
 	private Timer timer;
@@ -46,6 +47,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		innerInterrupt = (TextView) findViewById(R.id.todays_todo_inner_interrupt);
 		outterInterrupt = (TextView) findViewById(R.id.todays_todo_outter_interrupt);
 		giveupTimer = (TextView) findViewById(R.id.todays_todo_giveup_tomato_timer);
+		shield = (TextView) findViewById(R.id.todays_todo_shield);
 		// ÆÁÄ»³£ÁÁ¿ØÖÆ
 		this.powerManager = (PowerManager) this
 				.getSystemService(Context.POWER_SERVICE);
@@ -118,9 +120,11 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		if (usable) {
 			startTimer.setVisibility(View.VISIBLE);
 			giveupTimer.setVisibility(View.GONE);
+			shield.setVisibility(View.GONE);
 		} else {
 			startTimer.setVisibility(View.GONE);
 			giveupTimer.setVisibility(View.VISIBLE);
+			shield.setVisibility(View.VISIBLE);
 		}
 	}
 
