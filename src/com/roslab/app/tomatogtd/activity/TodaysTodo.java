@@ -1,23 +1,17 @@
 package com.roslab.app.tomatogtd.activity;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.devspark.appmsg.AppMsg;
 import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.adapter.TodaysTodoAdapter;
+import com.roslab.app.tomatogtd.controler.Timer;
+import com.roslab.app.tomatogtd.controler.Timer.OnTimerStateChangeListener;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
-import com.roslab.app.tomatogtd.services.AlertService;
-import com.roslab.app.tomatogtd.tool.Tools;
-import com.roslab.app.tomatogtd.view.CirclePageIndicator;
-import com.roslab.app.tomatogtd.view.LinePageIndicator;
 import com.roslab.app.tomatogtd.view.UnderlinePageIndicator;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.support.v4.app.FragmentActivity;
@@ -26,24 +20,23 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class TodaysTodo extends FragmentActivity implements OnClickListener,
-		OnLongClickListener {
+		OnLongClickListener, OnTimerStateChangeListener {
 
 	public static final String TAG = "TodaysTodo";
 
 	private ViewPager mViewPager;
 	private UnderlinePageIndicator mIndicator;
 	private TodaysTodoAdapter mAdapter;
-	private TimerHandler mHandler;
 	private TextView startTimer;
 	private TextView giveupTimer;
 	private TextView innerInterrupt;
 	private TextView outterInterrupt;
 	private PowerManager powerManager;
 	private WakeLock wakeLock;
+	private Timer timer;
 	private ArrayList<TodaysTodoItem> todaysTodoList;
 
 	private void initComm() {
@@ -53,13 +46,15 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		innerInterrupt = (TextView) findViewById(R.id.todays_todo_inner_interrupt);
 		outterInterrupt = (TextView) findViewById(R.id.todays_todo_outter_interrupt);
 		giveupTimer = (TextView) findViewById(R.id.todays_todo_giveup_tomato_timer);
-		// ÆÁÄ»³£ÁÁ
+		// ÆÁÄ»³£ÁÁ¿ØÖÆ
 		this.powerManager = (PowerManager) this
 				.getSystemService(Context.POWER_SERVICE);
+		Log.v(TAG, "initComm--->");
 		this.wakeLock = this.powerManager.newWakeLock(
 				PowerManager.FULL_WAKE_LOCK, "My Lock");
-		initListener();
+		this.wakeLock.setReferenceCounted(false);
 		Log.v(TAG, "initComm--->");
+		initListener();
 	}
 
 	// TODO
@@ -71,7 +66,6 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		giveupTimer.setOnLongClickListener(this);
 		innerInterrupt.setOnLongClickListener(this);
 		outterInterrupt.setOnLongClickListener(this);
-		// set button viewsable state
 		setStartButtonUsable(true);
 
 		Log.v(TAG, "initListener--->");
@@ -83,16 +77,16 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		TodaysTodoItem item;
 
 		item = new TodaysTodoItem();
-		item.setTitle("ÇÀ¿Î");
-		item.setStartTime("2013/09/09");
-		item.setEndTime("----/--/--");
+		item.setTitle("Ï´ÒÂ·þ");
+		item.setStartTime("2013/09/10");
+		item.setEndTime("2013/09/10");
 		item.setTomatoOne(1);
 		todaysTodoList.add(item);
 
 		item = new TodaysTodoItem();
 		item.setTitle("ÔÄ¶ÁÍø¹ÜËæ±ÊµÚÁù¡¢ÆßÕÂ");
 		item.setStartTime("2013/09/09");
-		item.setEndTime("----/--/--");
+		item.setEndTime("2013/09/10");
 		item.setTomatoOne(2);
 		item.setTomatoTwo(3);
 		todaysTodoList.add(item);
@@ -142,6 +136,11 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	@Override
 	protected void onStart() {
 		super.onStart();
+		if (timer!=null) {
+			if(timer.isStart())
+				this.wakeLock.acquire();
+		}
+		this.wakeLock.release();
 		Log.v(TAG, "onStart-->");
 	}
 
@@ -200,19 +199,19 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 			appMsg = AppMsg.makeText(this,
 					"click todays_todo_start_tomato_timer", AppMsg.STYLE_INFO);
 			appMsg.show();
-			if (mHandler == null) {
-				mHandler = new TimerHandler(currentItem);
-				mHandler.start();
+			if (timer == null) {
+				timer = new Timer(this, currentItem, this);
 			}
-			setStartButtonUsable(false);
+			timer.start();
 			break;
 		case R.id.todays_todo_giveup_tomato_timer:
-			appMsg = AppMsg
-					.makeText(this, getString(R.string.todays_todo_giveup_tomato_timer_notice),
-							AppMsg.STYLE_ALERT);
+			appMsg = AppMsg.makeText(this,
+					getString(R.string.todays_todo_giveup_tomato_timer_notice),
+					AppMsg.STYLE_ALERT);
 			appMsg.show();
-			if (mHandler != null) {
-				mHandler.sendEmptyMessage(TimerHandler.STOP_TIMER);
+			if (timer != null) {
+				timer.stop();
+				timer = null;
 			}
 			break;
 		case R.id.todays_todo_inner_interrupt:
@@ -233,76 +232,21 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		return true;
 	}
 
-	class TimerHandler extends Handler implements Runnable {
+	@Override
+	public void onTimerStart() {
+		this.wakeLock.acquire();
+		setStartButtonUsable(false);
+	}
 
-		public static final int UPDATE_TIMER_VIEW = 1;
-		public static final int STOP_TIMER = 2;
-		public static final long TomatoTime = 1000 * 60 * 25;
-		private TodaysTodoItem item;
-		private long startTime;
+	@Override
+	public void onTimerStop() {
+		this.wakeLock.release();
+		setStartButtonUsable(true);
+	}
 
-		public TimerHandler(TodaysTodoItem item) {
-			this.item = item;
-		}
-
-		public void start() {
-			sendEmptyMessage(UPDATE_TIMER_VIEW);
-			startTime = new Date().getTime();
-		}
-
-		protected boolean isTimeUp() {
-			long currentTime = new Date().getTime();
-			return currentTime > (startTime + TomatoTime);
-		}
-
-		protected String getRemainTimeInMinutes() {
-			long currentTime = new Date().getTime();
-			long remainTime = startTime - currentTime + TomatoTime;
-			return Tools.TransToMinute(remainTime);
-		}
-
-		@Override
-		public void handleMessage(Message msg) {
-
-			switch (msg.what) {
-			case UPDATE_TIMER_VIEW:
-				String text = getString(
-						R.string.todays_todo_timer_remain_message,
-						item.getTitle(), getRemainTimeInMinutes());
-				AppMsg appMsg = AppMsg.makeText(TodaysTodo.this, text,
-						AppMsg.STYLE_CONFIRM);
-				appMsg.show();
-
-				if (isTimeUp()) {
-					TodaysTodo.this.wakeLock.release();
-					item.addTomatoDone();
-					mHandler = null;
-				} else {
-					sendEmptyMessageDelayed(UPDATE_TIMER_VIEW,
-							AppMsg.LENGTH_LONG);
-				}
-				setStartButtonUsable(false);
-				
-				//TODO
-				wakeLock.acquire();
-
-				Log.v(TAG, "handleMessage-->UPDATE_TIMER_VIEW");
-				break;
-			case STOP_TIMER:
-				removeMessages(UPDATE_TIMER_VIEW);
-				setStartButtonUsable(true);
-				//TODO
-				wakeLock.release();
-				mHandler = null;
-
-				Log.v(TAG, "handleMessage-->STOP_TIMER");
-				break;
-			}
-		}
-
-		@Override
-		public void run() {
-
-		}
+	@Override
+	public void onTimeUp() {
+		updateCurrentViewPager();
+		setStartButtonUsable(true);
 	}
 }

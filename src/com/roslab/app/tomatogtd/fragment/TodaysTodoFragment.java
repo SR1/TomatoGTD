@@ -81,6 +81,7 @@ public class TodaysTodoFragment extends Fragment {
 			holder.todays_todo_tomato_interrupt.setText(interrupt.toString());
 
 		}
+		Log.v(TAG, "initData-->");
 	}
 
 	private void initViewHolder(View layout) {
