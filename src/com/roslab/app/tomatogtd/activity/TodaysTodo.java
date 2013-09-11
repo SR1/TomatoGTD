@@ -8,9 +8,11 @@ import com.roslab.app.tomatogtd.adapter.TodaysTodoAdapter;
 import com.roslab.app.tomatogtd.controler.Timer;
 import com.roslab.app.tomatogtd.controler.Timer.OnTimerStateChangeListener;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
+import com.roslab.app.tomatogtd.services.AlertService;
 import com.roslab.app.tomatogtd.view.UnderlinePageIndicator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
@@ -140,8 +142,8 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	@Override
 	protected void onStart() {
 		super.onStart();
-		if (timer!=null) {
-			if(timer.isStart())
+		if (timer != null) {
+			if (timer.isStart())
 				this.wakeLock.acquire();
 		}
 		this.wakeLock.release();
@@ -160,6 +162,18 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		this.wakeLock.release();
 		Log.v(TAG, "onPause-->");
 		super.onPause();
+	}
+
+	private void launchTictacSoundService() {
+		Intent intent = new Intent(this, AlertService.class);
+		startService(intent);
+		
+	}
+
+	private void stopTictacSoundService() {
+		Intent intent = new Intent(this, AlertService.class);
+		stopService(intent);
+		
 	}
 
 	// implement of OnClickListener
@@ -238,18 +252,22 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 
 	@Override
 	public void onTimerStart() {
+		launchTictacSoundService();
 		this.wakeLock.acquire();
 		setStartButtonUsable(false);
+		Log.v(TAG, "onTimerStart-->");
 	}
 
 	@Override
 	public void onTimerStop() {
+		stopTictacSoundService();
 		this.wakeLock.release();
 		setStartButtonUsable(true);
 	}
 
 	@Override
 	public void onTimeUp() {
+		stopTictacSoundService();
 		updateCurrentViewPager();
 		setStartButtonUsable(true);
 	}

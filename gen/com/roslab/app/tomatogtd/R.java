@@ -1481,6 +1481,7 @@ containing a value of this type.
     }
     public static final class raw {
         public static final int alert=0x7f040000;
+        public static final int tictac=0x7f040001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

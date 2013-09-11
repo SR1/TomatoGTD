@@ -17,22 +17,24 @@ public class AlertService extends Service {
 
 	public void onCreate() {
 		super.onCreate();
-		alert = MediaPlayer.create(this, R.raw.alert);
-		alert.setOnCompletionListener(new OnCompletionListener() {
-			public void onCompletion(MediaPlayer mp) {
-				mp.release();
-				AlertService.this.stopSelf();
-			}
-		});
+		alert = MediaPlayer.create(this, R.raw.tictac);
+		alert.setLooping(true);
 		Log.v(TAG, "On onCreate--->");
 	}
 
-	@SuppressWarnings("deprecation")
-	public void onStart(Intent intent, int startId) {
-		Log.v("AlertService onStart", "");
-		super.onStart(intent, startId);
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
 		alert.start();
-		Log.v(TAG, "On onStart--->");
+		super.onStartCommand(intent, flags, startId);
+		return super.onStartCommand(intent, flags, startId);
+	}
+
+	@Override
+	public void onDestroy() {
+		if(alert!=null)
+			alert.release();
+			
+		super.onDestroy();
 	}
 
 	public IBinder onBind(Intent arg0) {

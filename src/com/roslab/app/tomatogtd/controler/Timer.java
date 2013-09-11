@@ -38,9 +38,9 @@ public class Timer {
 	}
 
 	public void start() {
-		if (onTimerStateChangeListener != null)
-			onTimerStateChangeListener.onTimerStart();
 		if (mHandler == null)
+			if (onTimerStateChangeListener != null)
+				onTimerStateChangeListener.onTimerStart();
 			mHandler = new TimerHandler(activity, item,
 					onTimerStateChangeListener);
 		if (!mHandler.isStart()) {
