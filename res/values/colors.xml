@@ -2,6 +2,7 @@
 <resources>
     <color name="white">#ffffff</color>
     <color name="gray">#797e80</color>
+    <color name="black">#000000</color>
     
     <!-- card background color -->
     <color name="bgcolor_green">#5ac790</color>

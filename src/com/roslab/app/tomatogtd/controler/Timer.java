@@ -2,15 +2,10 @@ package com.roslab.app.tomatogtd.controler;
 
 import java.util.Date;
 
-import android.R.bool;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.devspark.appmsg.AppMsg;
-import com.roslab.app.tomatogtd.R;
-import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.tool.Tools;
 
 public class Timer {
@@ -18,22 +13,28 @@ public class Timer {
 	public static final String TAG = "Timer";
 
 	public interface OnTimerStateChangeListener {
+		/**
+		 * 计时器启动时执行
+		 */
 		public void onTimerStart();
-
+		/**
+		 * 计时器中断时执行
+		 */
 		public void onTimerStop();
-
+		/**
+		 * 计时器启动时，每一次循环执行
+		 */
+		public void onTimerLoop();
+		/**
+		 * 计时器计时完成时执行
+		 */
 		public void onTimeUp();
 	}
 
 	private OnTimerStateChangeListener onTimerStateChangeListener;
-	private TodaysTodoItem item;
-	private FragmentActivity activity;
 	private TimerHandler mHandler;
 
-	public Timer(FragmentActivity activity, TodaysTodoItem item,
-			OnTimerStateChangeListener listener) {
-		this.activity = activity;
-		this.item = item;
+	public Timer(OnTimerStateChangeListener listener) {
 		this.onTimerStateChangeListener = listener;
 	}
 
@@ -41,8 +42,7 @@ public class Timer {
 		if (mHandler == null)
 			if (onTimerStateChangeListener != null)
 				onTimerStateChangeListener.onTimerStart();
-			mHandler = new TimerHandler(activity, item,
-					onTimerStateChangeListener);
+			mHandler = new TimerHandler(onTimerStateChangeListener);
 		if (!mHandler.isStart()) {
 			mHandler.start();
 		}
@@ -78,23 +78,25 @@ public class Timer {
 		Log.v(TAG, "setOnTimerStateChangeListener-->");
 	}
 
+	public String getRemainTimeInMinutes() {
+		if(mHandler!=null && mHandler.isStart())
+			return mHandler.getRemainTimeInSecond();
+		return "";
+	}
+
 	class TimerHandler extends Handler {
 
 		public static final String TAG = "TimerHandler";
 
 		public static final int UPDATE_TIMER_VIEW = 1;
 		public static final int STOP_TIMER = 2;
-		public static final long TomatoTime = 1000 * 60 * 25;
-		private TodaysTodoItem item;
-		private FragmentActivity activity;
+		public static final long TomatoTime = 1000 * 60 * 5;
+		// public static final long TomatoTime = 1000 * 60 * 25;
 		private long startTime;
 		private boolean isStart = false;
 		private OnTimerStateChangeListener listener;
 
-		public TimerHandler(FragmentActivity activity, TodaysTodoItem item,
-				OnTimerStateChangeListener listener) {
-			this.activity = activity;
-			this.item = item;
+		public TimerHandler(OnTimerStateChangeListener listener) {
 			this.listener = listener;
 		}
 
@@ -117,10 +119,10 @@ public class Timer {
 			return currentTime > (startTime + TomatoTime);
 		}
 
-		protected String getRemainTimeInMinutes() {
+		public String getRemainTimeInSecond() {
 			long currentTime = new Date().getTime();
 			long remainTime = startTime - currentTime + TomatoTime;
-			return Tools.TransToMinute(remainTime);
+			return Tools.TransToString(remainTime);
 		}
 
 		@Override
@@ -128,20 +130,15 @@ public class Timer {
 
 			switch (msg.what) {
 			case UPDATE_TIMER_VIEW:
-				String text = activity.getString(
-						R.string.todays_todo_timer_remain_message,
-						item.getTitle(), getRemainTimeInMinutes());
-				AppMsg appMsg = AppMsg.makeText(activity, text,
-						AppMsg.STYLE_CONFIRM);
-				appMsg.show();
 
 				if (isTimeUp()) {
-					item.addTomatoDone();
 					listener.onTimeUp();
 					stop();
 				} else {
+					if(listener!=null)
+						listener.onTimerLoop();
 					sendEmptyMessageDelayed(UPDATE_TIMER_VIEW,
-							AppMsg.LENGTH_LONG);
+							100);
 				}
 				Log.v(TAG, "handleMessage-->UPDATE_TIMER_VIEW");
 				break;

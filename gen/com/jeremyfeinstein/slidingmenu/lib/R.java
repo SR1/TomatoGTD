@@ -32,7 +32,7 @@ public final class R {
 		public static final int abs__progress_horizontal = 0x7f06000f;
 		public static final int showHome = 0x7f060005;
 		public static final int fullscreen = 0x7f060013;
-		public static final int slidingmenumain = 0x7f06004d;
+		public static final int slidingmenumain = 0x7f06004e;
 		public static final int abs__home = 0x7f06000a;
 		public static final int abs__search_src_text = 0x7f060037;
 		public static final int abs__search_mag_icon = 0x7f060035;
@@ -160,15 +160,15 @@ public final class R {
 		public static final int abs__max_action_buttons = 0x7f090000;
 	}
 	public static final class color {
-		public static final int abs__primary_text_disable_only_holo_light = 0x7f050021;
+		public static final int abs__primary_text_disable_only_holo_light = 0x7f050022;
 		public static final int abs__bright_foreground_holo_dark = 0x7f050005;
 		public static final int abs__bright_foreground_holo_light = 0x7f050006;
-		public static final int abs__primary_text_holo_dark = 0x7f050022;
-		public static final int abs__primary_text_disable_only_holo_dark = 0x7f050020;
+		public static final int abs__primary_text_holo_dark = 0x7f050023;
+		public static final int abs__primary_text_disable_only_holo_dark = 0x7f050021;
 		public static final int abs__bright_foreground_disabled_holo_dark = 0x7f050007;
 		public static final int abs__background_holo_light = 0x7f050004;
 		public static final int abs__bright_foreground_disabled_holo_light = 0x7f050008;
-		public static final int abs__primary_text_holo_light = 0x7f050023;
+		public static final int abs__primary_text_holo_light = 0x7f050024;
 		public static final int abs__background_holo_dark = 0x7f050003;
 	}
 	public static final class string {

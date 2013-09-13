@@ -25,6 +25,11 @@ public class TodaysTodoAdapter extends FragmentStatePagerAdapter {
 	}
 
 	@Override
+	public int getItemPosition(Object object) {
+		return POSITION_NONE;
+	}
+
+	@Override
 	public Fragment getItem(int index) {
 		return TodaysTodoFragment.newInstance(todaysTodoList.get(index%count),index);
 	}

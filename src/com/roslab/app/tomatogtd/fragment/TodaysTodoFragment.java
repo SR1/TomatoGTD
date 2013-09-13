@@ -4,6 +4,7 @@ import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.tool.RandomColorId;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -120,7 +121,7 @@ public class TodaysTodoFragment extends Fragment {
 				.inflate(R.layout.fragment_todays_todo_item, null);
 
 		initViewHolder(layout);
-
+		initData();
 		Log.v(TAG, "onCreateView-->");
 		return layout;
 	}
@@ -128,7 +129,13 @@ public class TodaysTodoFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		initData();
+		Log.v(TAG, "onViewCreated-->");
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		Log.v(TAG, "onResume-->");
 	}
 
 	static class TodaysTodoViewHolder {

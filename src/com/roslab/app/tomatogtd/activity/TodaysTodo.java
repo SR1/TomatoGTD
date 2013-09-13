@@ -37,10 +37,12 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	private TextView innerInterrupt;
 	private TextView outterInterrupt;
 	private TextView shield;
+	private TextView timerText;
 	private PowerManager powerManager;
 	private WakeLock wakeLock;
 	private Timer timer;
 	private ArrayList<TodaysTodoItem> todaysTodoList;
+	private int currentTimingItem;
 
 	private void initComm() {
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -50,6 +52,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		outterInterrupt = (TextView) findViewById(R.id.todays_todo_outter_interrupt);
 		giveupTimer = (TextView) findViewById(R.id.todays_todo_giveup_tomato_timer);
 		shield = (TextView) findViewById(R.id.todays_todo_shield);
+		timerText = (TextView) findViewById(R.id.todays_todo_timer);
 		// ÆÁÄ»³£ÁÁ¿ØÖÆ
 		this.powerManager = (PowerManager) this
 				.getSystemService(Context.POWER_SERVICE);
@@ -96,7 +99,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		todaysTodoList.add(item);
 
 		Log.v(TAG, "initTodaysTodoList--->");
-		initViewPager();
+		//initViewPager();
 	}
 
 	private void initViewPager() {
@@ -111,9 +114,12 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 
 	public void updateCurrentViewPager() {
 
-		int currentPosition = mViewPager.getCurrentItem();
-		initViewPager();
-		mViewPager.setCurrentItem(currentPosition, false);
+		mAdapter.notifyDataSetChanged();
+//		int currentPosition = 1;
+//		if(mViewPager.getAdapter()!=null)
+//			currentPosition = mViewPager.getCurrentItem();
+//		initViewPager();
+//		mViewPager.setCurrentItem(currentPosition, false);
 
 		Log.v(TAG, "updateCurrentViewPager & setCuttentItem--->");
 	}
@@ -147,13 +153,14 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 				this.wakeLock.acquire();
 		}
 		this.wakeLock.release();
+		initViewPager();
 		Log.v(TAG, "onStart-->");
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		initViewPager();
+		mAdapter.notifyDataSetChanged();
 		Log.v(TAG, "onResume-->");
 	}
 
@@ -209,16 +216,14 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 	public boolean onLongClick(View v) {
 
 		AppMsg appMsg;
-		TodaysTodoItem currentItem = todaysTodoList.get(mViewPager
-				.getCurrentItem());
 
 		switch (v.getId()) {
 		case R.id.todays_todo_start_tomato_timer:
 			appMsg = AppMsg.makeText(this,
-					"click todays_todo_start_tomato_timer", AppMsg.STYLE_INFO);
+					getString(R.string.todays_todo_start_tomato_timer), AppMsg.STYLE_INFO);
 			appMsg.show();
 			if (timer == null) {
-				timer = new Timer(this, currentItem, this);
+				timer = new Timer(this);
 			}
 			timer.start();
 			break;
@@ -252,6 +257,7 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 
 	@Override
 	public void onTimerStart() {
+		currentTimingItem = mViewPager.getCurrentItem();
 		launchTictacSoundService();
 		this.wakeLock.acquire();
 		setStartButtonUsable(false);
@@ -263,12 +269,28 @@ public class TodaysTodo extends FragmentActivity implements OnClickListener,
 		stopTictacSoundService();
 		this.wakeLock.release();
 		setStartButtonUsable(true);
+		timerText.setVisibility(View.GONE);
+		Log.v(TAG, "onTimerStop-->");
 	}
 
 	@Override
 	public void onTimeUp() {
+		todaysTodoList.get(currentTimingItem).addTomatoDone();
 		stopTictacSoundService();
 		updateCurrentViewPager();
 		setStartButtonUsable(true);
+		timerText.setVisibility(View.GONE);
+		Log.v(TAG, "onTimeUp-->");
+	}
+
+	@Override
+	public void onTimerLoop() {
+		String text = getString(
+				R.string.todays_todo_timer_remain_message,
+				todaysTodoList.get(currentTimingItem).getTitle(), timer.getRemainTimeInMinutes());
+		timerText.setText(text);
+		timerText.setVisibility(View.VISIBLE);
+
+		Log.v(TAG, "onTimerLoop-->");
 	}
 }

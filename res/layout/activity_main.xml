@@ -13,21 +13,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <TextView
+            android:id="@+id/todays_todo_timer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/confirm"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
         <com.roslab.app.tomatogtd.view.UnderlinePageIndicator
             android:id="@+id/indicator"
             android:layout_width="fill_parent"
             android:layout_height="4dp"
             android:layout_gravity="bottom" />
     </FrameLayout>
-    
+
     <TextView
         android:id="@+id/todays_todo_shield"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
         android:background="@color/white"
         android:clickable="true"
-        android:visibility="gone"
-        android:alpha="0" />
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,58 +75,62 @@
                 android:gravity="center_vertical|left"
                 android:orientation="vertical" >
             </LinearLayout>
-			<!-- operation -->
+            <!-- operation -->
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|right"
+                android:layout_marginBottom="5dp"
                 android:background="@color/white"
                 android:gravity="bottom|right"
-                android:layout_marginBottom="5dp"
-                android:paddingRight="15dp"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:paddingRight="15dp" >
+
                 <TextView
                     android:id="@+id/todays_todo_start_tomato_timer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/play"
                     android:layout_margin="5dp"
                     android:clickable="true"
+                    android:drawableTop="@drawable/play"
                     android:text="@string/todays_todo_start_tomato_timer"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/todays_todo_giveup_tomato_timer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/trash"
                     android:layout_margin="5dp"
                     android:clickable="true"
+                    android:drawableTop="@drawable/trash"
                     android:text="@string/todays_todo_giveup_tomato_timer"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/todays_todo_inner_interrupt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/quote"
                     android:layout_margin="5dp"
                     android:clickable="true"
+                    android:drawableTop="@drawable/quote"
                     android:text="@string/todays_todo_inner_interrupt"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/todays_todo_outter_interrupt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/minus"
-                    android:clickable="true"
                     android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:drawableTop="@drawable/minus"
                     android:text="@string/todays_todo_outter_interrupt"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
             </LinearLayout>
-            
         </LinearLayout>
     </LinearLayout>
 
