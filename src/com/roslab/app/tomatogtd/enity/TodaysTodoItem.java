@@ -94,4 +94,8 @@ public class TodaysTodoItem {
 	public void addOutterInterrupt() {
 		this.outterInterrupt++;
 	}
+
+	public String toString() {
+		return this.title;
+	}
 }

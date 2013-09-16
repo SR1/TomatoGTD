@@ -1,4 +1,4 @@
-package com.roslab.app.tomatogtd.services;
+/*package com.roslab.app.tomatogtd.services;
 
 import com.roslab.app.tomatogtd.R;
 
@@ -41,4 +41,4 @@ public class AlertService extends Service {
 		Log.v(TAG, "On onBind--->");
 		return null;
 	}
-}
+}*/

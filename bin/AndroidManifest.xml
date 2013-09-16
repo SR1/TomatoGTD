@@ -25,5 +25,6 @@
         </activity>
         <service android:name=".services.AlertService"></service>
         <service android:name=".services.MainService"></service>
+        <service android:name=".services.TimerService"></service>
     </application>
 </manifest>
