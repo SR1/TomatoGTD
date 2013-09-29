@@ -1,10 +1,10 @@
-package com.roslab.app.tomatogtd.model;
+package com.roslab.app.tomatogtd.controler;
 
 import com.roslab.app.tomatogtd.enity.TimerState;
 
 import android.app.Activity;
 
-public interface MainModelInterface {
+public interface MainControllerInterface {
 	
 	/**
 	 * 获取控制器，如果控制器不存在
@@ -12,7 +12,7 @@ public interface MainModelInterface {
 	 * @param activity 
 	 * @return 控制器
 	 */
-	public MainModelInterface getController(Activity activity);
+	public MainControllerInterface getController(Activity activity);
 	
 	/**
 	 * 获取计时器状态

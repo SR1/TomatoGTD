@@ -1219,19 +1219,21 @@ containing a value of this type.
         /**  Minimum width of the search view text entry area. 
          */
         public static final int abs__search_view_text_min_width=0x7f08000b;
-        public static final int default_circle_indicator_radius=0x7f08000f;
-        public static final int default_circle_indicator_stroke_width=0x7f080010;
-        public static final int default_line_indicator_gap_width=0x7f080012;
-        public static final int default_line_indicator_line_width=0x7f080011;
-        public static final int default_line_indicator_stroke_width=0x7f080013;
-        public static final int default_title_indicator_clip_padding=0x7f080014;
-        public static final int default_title_indicator_footer_indicator_height=0x7f080016;
-        public static final int default_title_indicator_footer_indicator_underline_padding=0x7f080017;
-        public static final int default_title_indicator_footer_line_height=0x7f080015;
-        public static final int default_title_indicator_footer_padding=0x7f080018;
-        public static final int default_title_indicator_text_size=0x7f080019;
-        public static final int default_title_indicator_title_padding=0x7f08001a;
-        public static final int default_title_indicator_top_padding=0x7f08001b;
+        public static final int default_circle_indicator_radius=0x7f080011;
+        public static final int default_circle_indicator_stroke_width=0x7f080012;
+        public static final int default_line_indicator_gap_width=0x7f080014;
+        public static final int default_line_indicator_line_width=0x7f080013;
+        public static final int default_line_indicator_stroke_width=0x7f080015;
+        public static final int default_title_indicator_clip_padding=0x7f080016;
+        public static final int default_title_indicator_footer_indicator_height=0x7f080018;
+        public static final int default_title_indicator_footer_indicator_underline_padding=0x7f080019;
+        public static final int default_title_indicator_footer_line_height=0x7f080017;
+        public static final int default_title_indicator_footer_padding=0x7f08001a;
+        public static final int default_title_indicator_text_size=0x7f08001b;
+        public static final int default_title_indicator_title_padding=0x7f08001c;
+        public static final int default_title_indicator_top_padding=0x7f08001d;
+        public static final int shadow_width=0x7f08000f;
+        public static final int slidingmenu_offset=0x7f080010;
     }
     public static final class drawable {
         public static final int abs__ab_bottom_solid_dark_holo=0x7f020000;
@@ -1352,8 +1354,9 @@ containing a value of this type.
         public static final int minus=0x7f020073;
         public static final int play=0x7f020074;
         public static final int quote=0x7f020075;
-        public static final int square=0x7f020076;
-        public static final int trash=0x7f020077;
+        public static final int shadow=0x7f020076;
+        public static final int square=0x7f020077;
+        public static final int trash=0x7f020078;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f06002a;
@@ -1396,8 +1399,9 @@ containing a value of this type.
         public static final int abs__title=0x7f060025;
         public static final int abs__up=0x7f06000b;
         public static final int bottom=0x7f060018;
+        public static final int content_frame=0x7f060045;
         public static final int disableHome=0x7f060009;
-        public static final int done=0x7f060050;
+        public static final int done=0x7f060052;
         public static final int edit_query=0x7f060030;
         public static final int fullscreen=0x7f060013;
         public static final int homeAsUp=0x7f060006;
@@ -1405,33 +1409,34 @@ containing a value of this type.
         public static final int left=0x7f060010;
         public static final int listMode=0x7f060002;
         public static final int margin=0x7f060012;
-        public static final int menu_settings=0x7f060051;
+        public static final int menu_frame=0x7f060046;
+        public static final int menu_settings=0x7f060053;
         public static final int none=0x7f060015;
         public static final int normal=0x7f060001;
-        public static final int plan=0x7f06004f;
+        public static final int plan=0x7f060051;
         public static final int right=0x7f060011;
         public static final int selected_view=0x7f060014;
         public static final int showCustom=0x7f060008;
         public static final int showHome=0x7f060005;
         public static final int showTitle=0x7f060007;
-        public static final int slidingmenumain=0x7f06004e;
+        public static final int slidingmenumain=0x7f060050;
         public static final int tabMode=0x7f060003;
         public static final int todays_todo_background=0x7f060040;
-        public static final int todays_todo_end_date=0x7f060047;
+        public static final int todays_todo_end_date=0x7f060049;
         public static final int todays_todo_giveup_tomato_timer=0x7f060042;
         public static final int todays_todo_inner_interrupt=0x7f060043;
         public static final int todays_todo_outter_interrupt=0x7f060044;
-        public static final int todays_todo_remark=0x7f060048;
+        public static final int todays_todo_remark=0x7f06004a;
         public static final int todays_todo_shield=0x7f06003f;
-        public static final int todays_todo_start_date=0x7f060046;
+        public static final int todays_todo_start_date=0x7f060048;
         public static final int todays_todo_start_tomato_timer=0x7f060041;
         public static final int todays_todo_timer=0x7f06003d;
-        public static final int todays_todo_timer_line=0x7f060049;
-        public static final int todays_todo_title=0x7f060045;
-        public static final int todays_todo_tomato_1st=0x7f06004a;
-        public static final int todays_todo_tomato_2nd=0x7f06004b;
-        public static final int todays_todo_tomato_3rd=0x7f06004c;
-        public static final int todays_todo_tomato_interrupt=0x7f06004d;
+        public static final int todays_todo_timer_line=0x7f06004b;
+        public static final int todays_todo_title=0x7f060047;
+        public static final int todays_todo_tomato_1st=0x7f06004c;
+        public static final int todays_todo_tomato_2nd=0x7f06004d;
+        public static final int todays_todo_tomato_3rd=0x7f06004e;
+        public static final int todays_todo_tomato_interrupt=0x7f06004f;
         public static final int top=0x7f060019;
         public static final int triangle=0x7f060016;
         public static final int underline=0x7f060017;
@@ -1470,13 +1475,15 @@ containing a value of this type.
         public static final int abs__search_view=0x7f030013;
         public static final int abs__simple_dropdown_hint=0x7f030014;
         public static final int activity_main=0x7f030015;
-        public static final int app_msg=0x7f030016;
-        public static final int fragment_todays_todo_item=0x7f030017;
-        public static final int sherlock_spinner_dropdown_item=0x7f030018;
-        public static final int sherlock_spinner_item=0x7f030019;
-        public static final int slidingmenumain=0x7f03001a;
-        public static final int tomato_circle=0x7f03001b;
-        public static final int tomato_square=0x7f03001c;
+        public static final int activity_main_context=0x7f030016;
+        public static final int activity_main_menu=0x7f030017;
+        public static final int app_msg=0x7f030018;
+        public static final int fragment_todays_todo_item=0x7f030019;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001a;
+        public static final int sherlock_spinner_item=0x7f03001b;
+        public static final int slidingmenumain=0x7f03001c;
+        public static final int tomato_circle=0x7f03001d;
+        public static final int tomato_square=0x7f03001e;
     }
     public static final class menu {
         public static final int activity_main=0x7f0c0000;

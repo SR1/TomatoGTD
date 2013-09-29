@@ -1,5 +1,8 @@
 ﻿## 我想写好这个APP
 
+### 2013/09/30
+应用[SlidingMenu](https://github.com/jfeinstein10/SlidingMenu)到主页面中
+
 ### 2013/09/29
 使用Service组件作为控制器(Controller)，抽象了主控制器的计时器的功能
 
