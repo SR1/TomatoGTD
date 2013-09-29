@@ -8,6 +8,7 @@ public class TodaysTodoItem {
 	private String remark;
 	private String startTime;
 	private String endTime;
+	private int colorId;
 	private int[] tomato = new int[3];
 	private int total = 0;
 	private int tomatoDone = 0;
@@ -97,5 +98,13 @@ public class TodaysTodoItem {
 
 	public String toString() {
 		return this.title;
+	}
+
+	public int getColorId() {
+		return colorId;
+	}
+
+	public void setColorId(int colorId) {
+		this.colorId = colorId;
 	}
 }

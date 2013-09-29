@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
+import com.roslab.app.tomatogtd.tool.RandomColorId;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -47,13 +48,15 @@ public class DatabaseOperator {
 		int titleIndex = cursor.getColumnIndex(DatabaseHelper.AllTodo_Title);
 		int remarkIndex = cursor.getColumnIndex(DatabaseHelper.AllTodo_Remark);
 
+		int i=0;
 		for (cursor.moveToFirst(); !(cursor.isAfterLast()); cursor.moveToNext()) {
 			TodaysTodoItem item = new TodaysTodoItem();
 			
 			item.setTitle(cursor.getString(titleIndex));
 			item.setRemark(cursor.getString(remarkIndex));
-
+			item.setColorId(RandomColorId.getColorId(i));
 			todaysTodoList.add(item);
+			i++;
 			Log.v(TAG, "todaysTodoList-->"+item);
 		}
 
