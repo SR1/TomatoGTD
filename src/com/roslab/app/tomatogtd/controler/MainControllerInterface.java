@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
+import com.roslab.app.tomatogtd.model.TimerModelInterface.OnTimeUpListener;
 
-import android.app.Activity;
-
+/***
+ * 主控制器抽象接口
+ * @author SR1
+ */
 public interface MainControllerInterface {
 	
 	/**
