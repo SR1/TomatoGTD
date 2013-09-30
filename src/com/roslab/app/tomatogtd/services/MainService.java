@@ -4,15 +4,18 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.roslab.app.tomatogtd.controler.MainControllerInterface;
 import com.roslab.app.tomatogtd.enity.TimerState;
 
 public class MainService extends Service implements MainControllerInterface {
+	
+	public static final String TAG = "MainService";
+	
 	private static MainService mainService = null;
 
-	@Override
-	public MainControllerInterface getController(Activity activity) {
+	public static MainService getController(Activity activity) {
 		if (mainService != null)
 			return mainService;
 		Intent intent = new Intent(activity, MainService.class);
@@ -20,9 +23,10 @@ public class MainService extends Service implements MainControllerInterface {
 		return mainService;
 	}
 
-	private MainService() {
+	public MainService() {
 		super();
 		mainService = this;
+		Log.v(TAG, "MainService-->");
 	}
 
 	@Override

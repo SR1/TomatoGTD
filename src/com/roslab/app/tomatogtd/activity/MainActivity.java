@@ -5,12 +5,17 @@ import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.database.DatabaseOperator;
 import com.roslab.app.tomatogtd.fragment.TodaysTodoFragment;
 import com.roslab.app.tomatogtd.fragment.TodaysTodoItemFragment;
+import com.roslab.app.tomatogtd.services.MainService;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 public class MainActivity extends FragmentActivity {
+	
+	public static final String TAG = "MainActivity";
+	
 	private SlidingMenu menu;
 
 	/**
@@ -31,15 +36,14 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setTitle("main");
 		initialMenu();
-
+		if(MainService.getController(this)!=null)
+			Log.v(TAG, "onCreate-->get MainService");
 	}
 
 	private void initialMenu() {
 		setContentView(R.layout.activity_main_context);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, new TodaysTodoFragment()).commit();
-		// 设置滑动菜单的属性值
-
 		// 设置滑动菜单的属性值
 		menu = new SlidingMenu(this);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
@@ -54,20 +58,4 @@ public class MainActivity extends FragmentActivity {
 		// getSupportFragmentManager().beginTransaction().replace(R.id.menu_frame,
 		// new SampleListFragment()).commit();
 	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-	}
-
 }

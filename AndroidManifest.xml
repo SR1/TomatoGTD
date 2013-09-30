@@ -22,13 +22,16 @@
         <activity android:name=".activity.MainActivity"
         	android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="landscape">
+        </activity>
+        <activity
+			android:name=".activity.GuideActivity"
+        	android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".services.AlertService"></service>
         <service android:name=".services.MainService"></service>
-        <service android:name=".services.TimerService"></service>
     </application>
 </manifest>

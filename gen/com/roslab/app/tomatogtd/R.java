@@ -1474,16 +1474,17 @@ containing a value of this type.
         public static final int abs__search_dropdown_item_icons_2line=0x7f030012;
         public static final int abs__search_view=0x7f030013;
         public static final int abs__simple_dropdown_hint=0x7f030014;
-        public static final int activity_main_context=0x7f030015;
-        public static final int activity_main_menu=0x7f030016;
-        public static final int app_msg=0x7f030017;
-        public static final int fragment_todays_todo=0x7f030018;
-        public static final int fragment_todays_todo_item=0x7f030019;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001a;
-        public static final int sherlock_spinner_item=0x7f03001b;
-        public static final int slidingmenumain=0x7f03001c;
-        public static final int tomato_circle=0x7f03001d;
-        public static final int tomato_square=0x7f03001e;
+        public static final int activity_guide=0x7f030015;
+        public static final int activity_main_context=0x7f030016;
+        public static final int activity_main_menu=0x7f030017;
+        public static final int app_msg=0x7f030018;
+        public static final int fragment_todays_todo=0x7f030019;
+        public static final int fragment_todays_todo_item=0x7f03001a;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001b;
+        public static final int sherlock_spinner_item=0x7f03001c;
+        public static final int slidingmenumain=0x7f03001d;
+        public static final int tomato_circle=0x7f03001e;
+        public static final int tomato_square=0x7f03001f;
     }
     public static final class menu {
         public static final int activity_main=0x7f0c0000;
@@ -1536,6 +1537,10 @@ containing a value of this type.
         /**  默认显示值 
          */
         public static final int default_date_format=0x7f0a0010;
+        /**  引导界面 
+         */
+        public static final int guide_main_text=0x7f0a001a;
+        public static final int guide_sub_text=0x7f0a001b;
         public static final int hello_world=0x7f0a000e;
         public static final int menu_settings=0x7f0a000f;
         public static final int todays_todo_end_date=0x7f0a0012;
