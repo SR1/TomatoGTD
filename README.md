@@ -1,14 +1,15 @@
 ﻿## 我想写好这个APP
 
 ### 2013/09/30
-应用[SlidingMenu](https://github.com/jfeinstein10/SlidingMenu)到主页面中
-添加了引导界面，并在引导界面启动程序主控制器MainService
+1. 应用[SlidingMenu](https://github.com/jfeinstein10/SlidingMenu)到主页面中
+2. 添加了引导界面，并在引导界面启动程序主控制器MainService
+3. 整合原有的待办列表界面，完善各个状态下的逻辑，使锁屏状态回到界面显示正常
 
 ### 2013/09/29
 使用Service组件作为控制器(Controller)，抽象了主控制器的计时器的功能
 
 ### 2013/09/27 
-删除了数据库操作之外的所有实现代码，重写程序，
+1. 删除了数据库操作之外的所有实现代码，重写程序，
 使用MVC模式，从根本上降低代码之间的耦合度。
 耦合度高的代码严重限制了进一步的思考。
 

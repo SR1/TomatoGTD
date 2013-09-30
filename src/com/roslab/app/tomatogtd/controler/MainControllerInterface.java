@@ -1,6 +1,10 @@
 package com.roslab.app.tomatogtd.controler;
 
+import java.util.ArrayList;
+
 import com.roslab.app.tomatogtd.enity.TimerState;
+import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
+import com.roslab.app.tomatogtd.enity.TodoListState;
 
 import android.app.Activity;
 
@@ -21,4 +25,22 @@ public interface MainControllerInterface {
 	 * 停止计时器
 	 */
 	public void stopTimer();
+	
+	/***
+	 * 设置待办列表状态
+	 * @param state 待办列表状态对象
+	 */
+	public void setTodoListState(TodoListState state);
+	
+	/***
+	 * 获取待办列表状态 
+	 * @return 待办列表状态对象
+	 */
+	public TodoListState getTodoListState();
+	
+	/***
+	 * 获取本日待办列表
+	 * @return 本日待办列表
+	 */
+	public ArrayList<TodaysTodoItem> getTodayTodsList();
 }

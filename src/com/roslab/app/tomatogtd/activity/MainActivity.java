@@ -27,7 +27,10 @@ public class MainActivity extends FragmentActivity {
 		if (menu.isMenuShowing()) {
 			menu.showContent();
 		} else {
+			// 拦截返回键使Activity进入后台
 			moveTaskToBack(false);
+			// 使Activity销毁
+			// super.onBackPressed();
 		}
 	}
 
