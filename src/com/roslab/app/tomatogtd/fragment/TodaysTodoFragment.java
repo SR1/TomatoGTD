@@ -9,6 +9,7 @@ import com.roslab.app.tomatogtd.adapter.TodaysTodoAdapter;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
+import com.roslab.app.tomatogtd.model.ScreenOnModel;
 import com.roslab.app.tomatogtd.services.MainService;
 import com.roslab.app.tomatogtd.tool.Tools;
 import com.roslab.app.tomatogtd.view.UnderlinePageIndicator;
@@ -37,6 +38,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 	ArrayList<TodaysTodoItem> todolist;
 	TodaysTodoAdapter todaysTodoAdapter;
 	ValidateViewHandler handler;
+	ScreenOnModel screenOn;
 
 	/***
 	 * 声明组件
@@ -88,6 +90,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		todolist = mService.getTodayTodsList();
 
 		todoListState = mService.getTodoListState();
+		screenOn = new ScreenOnModel(getActivity());
 	}
 
 	/***
@@ -117,6 +120,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		// Activity和MainService共用同一个state
 		// 因此下面这个语句执行不执行都没有关系
 		// mService.setTodoListState(todoListState);
+		screenOn.off();
 	}
 
 	/***
@@ -142,6 +146,8 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		start.setVisibility(View.VISIBLE);
 		giveup.setVisibility(View.GONE);
 		timerText.setVisibility(View.GONE);
+		
+		screenOn.off();
 	}
 
 	/***
@@ -153,6 +159,8 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		giveup.setVisibility(View.VISIBLE);
 		timerText.setVisibility(View.VISIBLE);
 		timerText.setText(Tools.TransToString(timerState.getRemainTime()));
+		
+		screenOn.on();
 	}
 
 	@Override
@@ -172,16 +180,16 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 
 	@Override
 	public void onResume() {
-		resumeState();
 		startUpdateView();
+		resumeState();
 		super.onResume();
 		Log.v(TAG, "onResume-->");
 	}
 
 	@Override
 	public void onPause() {
-		saveState();
 		stopUpdateView();
+		saveState();
 		super.onPause();
 		Log.v(TAG, "onPause-->");
 	}

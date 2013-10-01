@@ -121,18 +121,6 @@ public class TodaysTodoItemFragment extends Fragment {
 		return layout;
 	}
 
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-		Log.v(TAG, "onViewCreated-->");
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		Log.v(TAG, "onResume-->");
-	}
-
 	static class TodaysTodoViewHolder {
 		public LinearLayout todays_todo_background;
 		public TextView todays_todo_title;
