@@ -44,6 +44,7 @@ public class Timer extends Thread implements TimerModelInterface {
 		}
 		if (listener != null)
 			listener.onTimeUp();
+		isStart = false;
 	}
 
 	@Override
