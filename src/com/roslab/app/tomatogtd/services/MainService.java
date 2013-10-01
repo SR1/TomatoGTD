@@ -1,6 +1,5 @@
 package com.roslab.app.tomatogtd.services;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -28,6 +27,9 @@ public class MainService extends Service implements MainControllerInterface,
 	private static MainService mainService = null;
 	private TodoListState todoListState;
 	private Timer timer;
+	private boolean isGiveUpTimer = false;
+	private MediaPlayer ticTac;
+	private MediaPlayer chime;
 
 	ArrayList<OnTimeUpListener> notifyList = new ArrayList<OnTimeUpListener>();
 
@@ -52,6 +54,41 @@ public class MainService extends Service implements MainControllerInterface,
 	protected void initial() {
 		todoListState = new TodoListState();
 		todoListState.setCurrentPosition(0);
+	}
+
+	/***
+	 * 播放计时声音
+	 */
+	protected void playTicTac() {
+		ticTac = MediaPlayer.create(this, R.raw.tictac);
+		ticTac.setLooping(true);
+		ticTac.start();
+	}
+
+	/***
+	 * 停止播放计时声音
+	 */
+	protected void stopPlayTicTac() {
+		if (ticTac != null) {
+			ticTac.stop();
+			ticTac.release();
+			ticTac = null;
+		}
+	}
+
+	/***
+	 * 播放计时完成声音
+	 */
+	protected void playChime() {
+		chime = MediaPlayer.create(this, R.raw.chime);
+		chime.setLooping(false);
+		chime.setOnCompletionListener(new OnCompletionListener() {
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				mp.release();
+			}
+		});
+		chime.start();
 	}
 
 	@Override
@@ -81,14 +118,18 @@ public class MainService extends Service implements MainControllerInterface,
 		if (timer == null) {
 			timer = new Timer();
 			timer.setOnTimeUpListener(this);
+			timer.startTimer();
+			playTicTac();
 		}
-		timer.startTimer();
 	}
 
 	@Override
 	public void stopTimer() {
-		if (timer != null)
+		if (timer != null) {
+			isGiveUpTimer = true;
 			timer.stopTimer();
+			timer = null;
+		}
 	}
 
 	@Override
@@ -109,14 +150,10 @@ public class MainService extends Service implements MainControllerInterface,
 
 	@Override
 	public void onTimeUp() {
-		MediaPlayer mp = MediaPlayer.create(this, R.raw.chime);
-		mp.setLooping(false);
-		mp.setOnCompletionListener(new OnCompletionListener() {
-			@Override
-			public void onCompletion(MediaPlayer mp) {
-				mp.release();
-			}
-		});
-		mp.start();
+		if (!isGiveUpTimer) {
+			playChime();
+			isGiveUpTimer = false;
+		}
+		stopPlayTicTac();
 	}
 }

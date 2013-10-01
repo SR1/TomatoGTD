@@ -1,8 +1,6 @@
 package com.roslab.app.tomatogtd.database;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.tool.RandomColorId;
@@ -11,9 +9,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.format.DateFormat;
 import android.util.Log;
-import android.widget.TextView;
 
 public class DatabaseOperator {
 	
@@ -21,8 +17,6 @@ public class DatabaseOperator {
 	
 	private DatabaseHelper dbh;
 	private SQLiteDatabase db;
-
-	private static final long A_DAY_LONG = 24 * 60 * 60 * 1000;
 
 	// 构造函数
 	public DatabaseOperator(Context context) {
@@ -92,14 +86,4 @@ public class DatabaseOperator {
 		
 		db.close();
 	}
-
-	// 将时间转换为标准显示格式
-	private String transTimeToFormal(long militime) {
-
-		Date day = new Date(militime);
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-
-		return sdf.format(day);
-	}
-
 }

@@ -2,12 +2,9 @@ package com.roslab.app.tomatogtd.activity;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.roslab.app.tomatogtd.R;
-import com.roslab.app.tomatogtd.database.DatabaseOperator;
 import com.roslab.app.tomatogtd.fragment.TodaysTodoFragment;
-import com.roslab.app.tomatogtd.fragment.TodaysTodoItemFragment;
 import com.roslab.app.tomatogtd.services.MainService;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
