@@ -25,7 +25,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		OnLongClickListener, OnClickListener {
@@ -98,20 +97,22 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		todoListState = mService.getTodoListState();
 		screenOn = new ScreenOnModel(getActivity());
 	}
-	
+
 	/***
 	 * 更新待办列表数据
-	 * @param isUpdateCurrentItem 是否显示回原来的位置
+	 * 
+	 * @param isUpdateCurrentItem
+	 *            是否显示回原来的位置
 	 */
-	private void updateTodoList(boolean isUpdateCurrentItem){
+	private void updateTodoList(boolean isUpdateCurrentItem) {
 		int current = 0;
-		if(isUpdateCurrentItem)
+		if (isUpdateCurrentItem)
 			current = vp.getCurrentItem();
 		todolist = mService.getTodayTodsList();
-		todaysTodoAdapter = new TodaysTodoAdapter(
-				getFragmentManager(), todolist);
+		todaysTodoAdapter = new TodaysTodoAdapter(getFragmentManager(),
+				todolist);
 		vp.setAdapter(todaysTodoAdapter);
-		vp.setCurrentItem(current, false);	
+		vp.setCurrentItem(current, false);
 	}
 
 	/***
@@ -238,34 +239,22 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 			handler.sendEmptyMessage(ValidateViewHandler.UPDATE_NOW);
 			break;
 		case R.id.todays_todo_inner_interrupt:
-			if (mService.getTimerState().isStart()) {
-				mService.addInnerInterrupt(todolist.get(vp.getCurrentItem())
-						.getId(), new OnOperationDoneListener() {
-					@Override
-					public void onOperationDone() {
-						updateTodoList(true);
-					}
-				});
-			} else {
-				Toast.makeText(getActivity(),
-						getActivity().getString(R.string.please_start_timer),
-						Toast.LENGTH_SHORT).show();
-			}
+			mService.addInnerInterrupt(todolist.get(vp.getCurrentItem())
+					.getId(), new OnOperationDoneListener() {
+				@Override
+				public void onOperationDone() {
+					updateTodoList(true);
+				}
+			});
 			break;
 		case R.id.todays_todo_outter_interrupt:
-			if (mService.getTimerState().isStart()) {
-				mService.addOutterInterrupt(todolist.get(vp.getCurrentItem())
-						.getId(), new OnOperationDoneListener() {
-					@Override
-					public void onOperationDone() {
-						updateTodoList(true);
-					}
-				});
-			} else {
-				Toast.makeText(getActivity(),
-						getActivity().getString(R.string.please_start_timer),
-						Toast.LENGTH_SHORT).show();
-			}
+			mService.addOutterInterrupt(todolist.get(vp.getCurrentItem())
+					.getId(), new OnOperationDoneListener() {
+				@Override
+				public void onOperationDone() {
+					updateTodoList(true);
+				}
+			});
 			break;
 		default:
 			break;
@@ -277,33 +266,23 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.todays_todo_inner_interrupt:
-			if (mService.getTimerState().isStart()) {
-				mService.addInnerInterrupt(todolist.get(vp.getCurrentItem())
-						.getId(), new OnOperationDoneListener() {
-					@Override
-					public void onOperationDone() {
-						updateTodoList(true);
-					}
-				});
-			} else {
-				Toast.makeText(getActivity(),
-						getActivity().getString(R.string.please_start_timer),
-						Toast.LENGTH_SHORT).show();
-			}
+			mService.addInnerInterrupt(todolist.get(vp.getCurrentItem())
+					.getId(), new OnOperationDoneListener() {
+				@Override
+				public void onOperationDone() {
+					updateTodoList(true);
+				}
+			});
+			break;
 		case R.id.todays_todo_outter_interrupt:
-			if (mService.getTimerState().isStart()) {
-				mService.addOutterInterrupt(todolist.get(vp.getCurrentItem())
-						.getId(), new OnOperationDoneListener() {
-					@Override
-					public void onOperationDone() {
-						updateTodoList(true);
-					}
-				});
-			} else {
-				Toast.makeText(getActivity(),
-						getActivity().getString(R.string.please_start_timer),
-						Toast.LENGTH_SHORT).show();
-			}
+			mService.addOutterInterrupt(todolist.get(vp.getCurrentItem())
+					.getId(), new OnOperationDoneListener() {
+				@Override
+				public void onOperationDone() {
+					updateTodoList(true);
+				}
+			});
+			break;
 		default:
 			break;
 		}

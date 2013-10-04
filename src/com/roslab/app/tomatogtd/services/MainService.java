@@ -7,7 +7,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.controler.MainControllerInterface;
 import com.roslab.app.tomatogtd.database.DatabaseOperator;
 import com.roslab.app.tomatogtd.enity.TimerState;
@@ -123,18 +125,30 @@ public class MainService extends Service implements MainControllerInterface,
 	}
 
 	@Override
-	public void addInnerInterrupt(int todaysTodoId, OnOperationDoneListener listener) {
+	public void addInnerInterrupt(int todaysTodoId,
+			OnOperationDoneListener listener) {
+		if (!getTimerState().isStart()) {
+			Toast.makeText(this, getString(R.string.please_start_timer),
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
 		DatabaseOperator databaseOperator = new DatabaseOperator(this);
 		databaseOperator.addInnerInterrupt(todaysTodoId);
-		if(listener!=null)
+		if (listener != null)
 			listener.onOperationDone();
 	}
 
 	@Override
-	public void addOutterInterrupt(int todaysTodoId, OnOperationDoneListener listener) {
+	public void addOutterInterrupt(int todaysTodoId,
+			OnOperationDoneListener listener) {
+		if (!getTimerState().isStart()) {
+			Toast.makeText(this, getString(R.string.please_start_timer),
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
 		DatabaseOperator databaseOperator = new DatabaseOperator(this);
 		databaseOperator.addOutterInterrupt(todaysTodoId);
-		if(listener!=null)
+		if (listener != null)
 			listener.onOperationDone();
 	}
 }
