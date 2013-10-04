@@ -2,10 +2,10 @@ package com.roslab.app.tomatogtd.controler;
 
 import java.util.ArrayList;
 
+import com.roslab.app.tomatogtd.activity.ValidateViewHandler;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
-import com.roslab.app.tomatogtd.interfaces.OnOperationDoneListener;
 
 /***
  * 主控制器抽象接口
@@ -51,11 +51,23 @@ public interface MainControllerInterface {
 	 * 添加内部中断
 	 * @param listener 操作完成后调用这个监听器的方法
 	 */
-	public void addInnerInterrupt(int todaysTodoId, OnOperationDoneListener listener);
+	public void addInnerInterrupt(int todaysTodoId);
 	
 	/***
 	 * 添加外部中断
 	 * @param listener 操作完成后调用这个监听器的方法
 	 */
-	public void addOutterInterrupt(int todaysTodoId, OnOperationDoneListener listener);
+	public void addOutterInterrupt(int todaysTodoId);
+	
+	/***
+	 * 注册刷新界面的handler
+	 * @param handler
+	 */
+	public void registerValidateViewHandler(ValidateViewHandler handler);
+	
+	/***
+	 * 取消注册刷新界面的handler
+	 * @param handler
+	 */
+	public void removeValidateViewHandler(ValidateViewHandler handler);
 }

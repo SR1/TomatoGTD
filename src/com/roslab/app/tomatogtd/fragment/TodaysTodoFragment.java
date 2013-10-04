@@ -9,7 +9,6 @@ import com.roslab.app.tomatogtd.adapter.TodaysTodoAdapter;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
-import com.roslab.app.tomatogtd.interfaces.OnOperationDoneListener;
 import com.roslab.app.tomatogtd.model.ScreenOnModel;
 import com.roslab.app.tomatogtd.services.MainService;
 import com.roslab.app.tomatogtd.tool.Tools;
@@ -100,7 +99,6 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 
 	/***
 	 * 更新待办列表数据
-	 * 
 	 * @param isUpdateCurrentItem
 	 *            是否显示回原来的位置
 	 */
@@ -112,7 +110,10 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		todaysTodoAdapter = new TodaysTodoAdapter(getFragmentManager(),
 				todolist);
 		vp.setAdapter(todaysTodoAdapter);
+		if(current>todolist.size())
+			current = todolist.size();
 		vp.setCurrentItem(current, false);
+		Log.v(TAG, "updateTodoList-->" + todolist);
 	}
 
 	/***
@@ -149,7 +150,9 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 	 * 定时刷新界面
 	 */
 	public void startUpdateView() {
-		handler = new ValidateViewHandler(this);
+		if (handler == null)
+			handler = new ValidateViewHandler(this);
+		mService.registerValidateViewHandler(handler);
 		handler.sendEmptyMessage(ValidateViewHandler.UPDATE_LOOP);
 	}
 
@@ -158,6 +161,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 	 */
 	public void stopUpdateView() {
 		handler.removeMessages(ValidateViewHandler.UPDATE_LOOP);
+		mService.removeValidateViewHandler(handler);
 	}
 
 	/***
@@ -213,11 +217,17 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		stopUpdateView();
 		saveState();
 		super.onPause();
-		Log.v(TAG, "onPause-->");
+		Log.v(TAG, "onPause-->"+vp.getCurrentItem());
 	}
 
 	@Override
 	public void onValidate() {
+		if (todoListState == null)
+			todoListState = mService.getTodoListState();
+		if (todoListState.isTodoListChange()) {
+			updateTodoList(true);
+			todoListState.setTodoListChange(false);
+		}
 		timerState = mService.getTimerState();
 		if (timerState.isStart()) {
 			timerRuningView();
@@ -240,21 +250,11 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 			break;
 		case R.id.todays_todo_inner_interrupt:
 			mService.addInnerInterrupt(todolist.get(vp.getCurrentItem())
-					.getId(), new OnOperationDoneListener() {
-				@Override
-				public void onOperationDone() {
-					updateTodoList(true);
-				}
-			});
+					.getId());
 			break;
 		case R.id.todays_todo_outter_interrupt:
 			mService.addOutterInterrupt(todolist.get(vp.getCurrentItem())
-					.getId(), new OnOperationDoneListener() {
-				@Override
-				public void onOperationDone() {
-					updateTodoList(true);
-				}
-			});
+					.getId());
 			break;
 		default:
 			break;
@@ -267,21 +267,11 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		switch (v.getId()) {
 		case R.id.todays_todo_inner_interrupt:
 			mService.addInnerInterrupt(todolist.get(vp.getCurrentItem())
-					.getId(), new OnOperationDoneListener() {
-				@Override
-				public void onOperationDone() {
-					updateTodoList(true);
-				}
-			});
+					.getId());
 			break;
 		case R.id.todays_todo_outter_interrupt:
 			mService.addOutterInterrupt(todolist.get(vp.getCurrentItem())
-					.getId(), new OnOperationDoneListener() {
-				@Override
-				public void onOperationDone() {
-					updateTodoList(true);
-				}
-			});
+					.getId());
 			break;
 		default:
 			break;

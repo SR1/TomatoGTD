@@ -10,12 +10,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.roslab.app.tomatogtd.R;
+import com.roslab.app.tomatogtd.activity.ValidateViewHandler;
 import com.roslab.app.tomatogtd.controler.MainControllerInterface;
 import com.roslab.app.tomatogtd.database.DatabaseOperator;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
-import com.roslab.app.tomatogtd.interfaces.OnOperationDoneListener;
 import com.roslab.app.tomatogtd.model.MediaModel;
 import com.roslab.app.tomatogtd.model.Timer;
 import com.roslab.app.tomatogtd.model.TimerModelInterface.OnTimeUpListener;
@@ -31,6 +31,7 @@ public class MainService extends Service implements MainControllerInterface,
 	private boolean isGiveUpTimer = false;
 	private MediaModel media;
 	private TimerState state;
+	private ValidateViewHandler handler;
 
 	ArrayList<OnTimeUpListener> notifyList = new ArrayList<OnTimeUpListener>();
 
@@ -107,7 +108,6 @@ public class MainService extends Service implements MainControllerInterface,
 			isGiveUpTimer = true;
 			timer.stopTimer();
 			timer = null;
-			resetTimerState();
 		}
 	}
 
@@ -133,17 +133,20 @@ public class MainService extends Service implements MainControllerInterface,
 		timer = null;
 		if (!isGiveUpTimer) {
 			media.playChime();
-			isGiveUpTimer = false;
 			DatabaseOperator databaseOperator = new DatabaseOperator(this);
-			if (state != null)
+			if (state != null) {
 				databaseOperator.addTodaysTodoFinishNumber(state
 						.getRunningTodaysTodoId());
+				todoListState.setTodoListChange(true);
+				Log.v(TAG, "onTimeUp-->" + state.getRunningTodaysTodoId());
+			}
 		}
+		isGiveUpTimer = false;
+		resetTimerState();
 	}
 
 	@Override
-	public void addInnerInterrupt(int todaysTodoId,
-			OnOperationDoneListener listener) {
+	public void addInnerInterrupt(int todaysTodoId) {
 		if (!getTimerState().isStart()) {
 			Toast.makeText(this, getString(R.string.please_start_timer),
 					Toast.LENGTH_SHORT).show();
@@ -151,13 +154,13 @@ public class MainService extends Service implements MainControllerInterface,
 		}
 		DatabaseOperator databaseOperator = new DatabaseOperator(this);
 		databaseOperator.addInnerInterrupt(todaysTodoId);
-		if (listener != null)
-			listener.onOperationDone();
+		todoListState.setTodoListChange(true);
+		if (handler != null)
+			handler.sendEmptyMessage(ValidateViewHandler.UPDATE_NOW);
 	}
 
 	@Override
-	public void addOutterInterrupt(int todaysTodoId,
-			OnOperationDoneListener listener) {
+	public void addOutterInterrupt(int todaysTodoId) {
 		if (!getTimerState().isStart()) {
 			Toast.makeText(this, getString(R.string.please_start_timer),
 					Toast.LENGTH_SHORT).show();
@@ -165,7 +168,18 @@ public class MainService extends Service implements MainControllerInterface,
 		}
 		DatabaseOperator databaseOperator = new DatabaseOperator(this);
 		databaseOperator.addOutterInterrupt(todaysTodoId);
-		if (listener != null)
-			listener.onOperationDone();
+		todoListState.setTodoListChange(true);
+		if (handler != null)
+			handler.sendEmptyMessage(ValidateViewHandler.UPDATE_NOW);
+	}
+
+	@Override
+	public void registerValidateViewHandler(ValidateViewHandler handler) {
+		this.handler = handler;
+	}
+
+	@Override
+	public void removeValidateViewHandler(ValidateViewHandler handler) {
+		this.handler = null;
 	}
 }
