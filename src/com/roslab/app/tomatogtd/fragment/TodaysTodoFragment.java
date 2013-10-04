@@ -230,7 +230,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 	public boolean onLongClick(View v) {
 		switch (v.getId()) {
 		case R.id.todays_todo_start_tomato_timer:
-			mService.startTimer();
+			mService.startTimer(todolist.get(vp.getCurrentItem()).getId());
 			handler.sendEmptyMessage(ValidateViewHandler.UPDATE_NOW);
 			break;
 

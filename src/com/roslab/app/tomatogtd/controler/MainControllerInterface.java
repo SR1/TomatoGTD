@@ -22,7 +22,7 @@ public interface MainControllerInterface {
 	/**
 	 * 启动计时器
 	 */
-	public void startTimer();
+	public void startTimer(int todaysTodoId);
 	
 	/**
 	 * 停止计时器

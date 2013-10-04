@@ -4,6 +4,7 @@ public class TimerState {
 	
 	private boolean isStart = false;
 	private long remainTime;
+	private int runningTodaysTodoId = -1;
 	
 	public boolean isStart() {
 		return isStart;
@@ -19,5 +20,13 @@ public class TimerState {
 
 	public void setRemainTime(long remainTime) {
 		this.remainTime = remainTime;
+	}
+
+	public int getRunningTodaysTodoId() {
+		return runningTodaysTodoId;
+	}
+
+	public void setRunningTodaysTodoId(int runningTodaysTodoId) {
+		this.runningTodaysTodoId = runningTodaysTodoId;
 	}
 }

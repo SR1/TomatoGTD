@@ -424,4 +424,23 @@ public class DatabaseOperator implements DatabaseOperatorModel {
 		databaseHelper.close();
 		return todaysTodoList;
 	}
+
+	@Override
+	public boolean addTodaysTodoFinishNumber(int todaysTodoId) {
+		final String update = "UPDATE todaysTodos SET finishNumber=finishNumber+1 WHERE id=%d;";
+
+		DatabaseHelper databaseHelper = new DatabaseHelper(context);
+		SQLiteDatabase sqliteDatabase = databaseHelper.getReadableDatabase();
+		boolean isSuccess = false;
+		try {
+			sqliteDatabase.execSQL(String.format(update, todaysTodoId));
+			isSuccess = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			isSuccess = false;
+		}
+		sqliteDatabase.close();
+		databaseHelper.close();
+		return isSuccess;
+	}
 }

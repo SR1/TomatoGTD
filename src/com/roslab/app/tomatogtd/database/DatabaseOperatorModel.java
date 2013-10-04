@@ -105,6 +105,13 @@ public interface DatabaseOperatorModel {
 	public boolean addTodaysTodoThirdEstimate(int todaysTodoId, int thirdEstimate);
 	
 	/***
+	 * 为今日待办添加一个完成了的番茄数
+	 * @param id 今日待办的id
+	 * @return 操作是否成功
+	 */
+	public boolean addTodaysTodoFinishNumber(int todaysTodoId);
+	
+	/***
 	 * 查询所有还未完成的待办事项
 	 * @return 待办事项列表
 	 */

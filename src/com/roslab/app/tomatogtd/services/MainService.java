@@ -30,6 +30,7 @@ public class MainService extends Service implements MainControllerInterface,
 	private Timer timer;
 	private boolean isGiveUpTimer = false;
 	private MediaModel media;
+	private TimerState state;
 
 	ArrayList<OnTimeUpListener> notifyList = new ArrayList<OnTimeUpListener>();
 
@@ -54,7 +55,18 @@ public class MainService extends Service implements MainControllerInterface,
 	protected void initial() {
 		todoListState = new TodoListState();
 		todoListState.setCurrentPosition(0);
+		resetTimerState();
 		media = new MediaModel(this);
+	}
+
+	/***
+	 * 重置计时器状态对象
+	 */
+	private void resetTimerState() {
+		state = new TimerState();
+		state.setRemainTime(0);
+		state.setRunningTodaysTodoId(-1);
+		state.setStart(false);
 	}
 
 	@Override
@@ -69,9 +81,8 @@ public class MainService extends Service implements MainControllerInterface,
 
 	@Override
 	public TimerState getTimerState() {
-		TimerState state = new TimerState();
-		state.setStart(false);
-		state.setRemainTime(0);
+		if (state == null)
+			resetTimerState();
 		if (timer != null) {
 			state.setStart(timer.isStart());
 			state.setRemainTime(timer.getRemainingTime());
@@ -80,7 +91,8 @@ public class MainService extends Service implements MainControllerInterface,
 	}
 
 	@Override
-	public void startTimer() {
+	public void startTimer(int todaysTodoId) {
+		state.setRunningTodaysTodoId(todaysTodoId);
 		if (timer == null) {
 			timer = new Timer();
 			timer.setOnTimeUpListener(this);
@@ -95,6 +107,7 @@ public class MainService extends Service implements MainControllerInterface,
 			isGiveUpTimer = true;
 			timer.stopTimer();
 			timer = null;
+			resetTimerState();
 		}
 	}
 
@@ -121,6 +134,10 @@ public class MainService extends Service implements MainControllerInterface,
 		if (!isGiveUpTimer) {
 			media.playChime();
 			isGiveUpTimer = false;
+			DatabaseOperator databaseOperator = new DatabaseOperator(this);
+			if (state != null)
+				databaseOperator.addTodaysTodoFinishNumber(state
+						.getRunningTodaysTodoId());
 		}
 	}
 
