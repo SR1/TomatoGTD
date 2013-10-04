@@ -3,108 +3,104 @@ package com.roslab.app.tomatogtd.enity;
 public class TodaysTodoItem {
 	
 	public static final String TAG = "TodaysTodoItem";
-
-	private String title;
-	private String remark;
-	private String startTime;
-	private String endTime;
-	private int colorId;
-	private int[] tomato = new int[3];
-	private int total = 0;
-	private int tomatoDone = 0;
-	private int innerInterrupt = 0;
-	private int outterInterrupt = 0;
-
-	public String getTitle() {
-		return title;
+	
+	String today;
+	int id;
+	int allTodoId;
+	String subject;
+	String remark;
+	String addTime;
+	String dueTime;
+	int firstEstimate;
+	int secondEstimate;
+	int thirdEstimate;
+	int finishNumber;
+	int innerInterrupt;
+	int outterInterrupt;
+	int color;
+	
+	public String getToday() {
+		return today;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setToday(String today) {
+		this.today = today;
 	}
-
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getAllTodoId() {
+		return allTodoId;
+	}
+	public void setAllTodoId(int allTodoId) {
+		this.allTodoId = allTodoId;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 	public String getRemark() {
 		return remark;
 	}
-
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
-	public String getStartTime() {
-		return startTime;
+	public String getAddTime() {
+		return addTime;
 	}
-
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
+	public void setAddTime(String addTime) {
+		this.addTime = addTime;
 	}
-
-	public String getEndTime() {
-		return endTime;
+	public String getDueTime() {
+		return dueTime;
 	}
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
+	public void setDueTime(String dueTime) {
+		this.dueTime = dueTime;
 	}
-
-	public int[] getTomato() {
-		return tomato;
+	public int getFirstEstimate() {
+		return firstEstimate;
 	}
-
-	public void setTomatoOne(int one) {
-		this.tomato[0] = one;
-		countTotal();
+	public void setFirstEstimate(int firstEstimate) {
+		this.firstEstimate = firstEstimate;
 	}
-
-	public void setTomatoTwo(int two) {
-		this.tomato[1] = two;
-		countTotal();
+	public int getSecondEstimate() {
+		return secondEstimate;
 	}
-
-	public void setTomatoThree(int three) {
-		this.tomato[2] = three;
-		countTotal();
+	public void setSecondEstimate(int secondEstimate) {
+		this.secondEstimate = secondEstimate;
 	}
-
-	public int getTomatoDone() {
-		return tomatoDone;
+	public int getThirdEstimate() {
+		return thirdEstimate;
 	}
-
-	public void addTomatoDone() {
-		if (tomatoDone < total) {
-			tomatoDone++;
-		}
+	public void setThirdEstimate(int thirdEstimate) {
+		this.thirdEstimate = thirdEstimate;
 	}
-
-	private void countTotal() {
-		total = tomato[0] + tomato[1] + tomato[2];
-	}
-
 	public int getInnerInterrupt() {
 		return innerInterrupt;
 	}
-
-	public void addInnerInterrupt() {
-		this.innerInterrupt++;
+	public void setInnerInterrupt(int innerInterrupt) {
+		this.innerInterrupt = innerInterrupt;
 	}
-
 	public int getOutterInterrupt() {
 		return outterInterrupt;
 	}
-
-	public void addOutterInterrupt() {
-		this.outterInterrupt++;
+	public void setOutterInterrupt(int outterInterrupt) {
+		this.outterInterrupt = outterInterrupt;
 	}
-
-	public String toString() {
-		return this.title;
+	public int getColor() {
+		return color;
 	}
-
-	public int getColorId() {
-		return colorId;
+	public void setColor(int color) {
+		this.color = color;
 	}
-
-	public void setColorId(int colorId) {
-		this.colorId = colorId;
+	public int getFinishNumber() {
+		return finishNumber;
+	}
+	public void setFinishNumber(int finishNumber) {
+		this.finishNumber = finishNumber;
 	}
 }

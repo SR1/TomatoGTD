@@ -35,31 +35,35 @@ public class TodaysTodoItemFragment extends Fragment {
 	protected void initData() {
 
 		if (mTodaysTodoItem != null) {
-			color = getResources().getColor(mTodaysTodoItem.getColorId());
+			color = getResources().getColor(mTodaysTodoItem.getColor());
 
 			holder.todays_todo_background.setBackgroundColor(color);
-			holder.todays_todo_title.setText(mTodaysTodoItem.getTitle());
+			holder.todays_todo_title.setText(mTodaysTodoItem.getSubject());
 			holder.todays_todo_start_date.setText(getString(
 					R.string.todays_todo_start_date,
-					mTodaysTodoItem.getStartTime()));
+					mTodaysTodoItem.getAddTime()));
 			holder.todays_todo_end_date
 					.setText(getString(R.string.todays_todo_end_date,
-							mTodaysTodoItem.getEndTime()));
+							mTodaysTodoItem.getDueTime()));
 			holder.todays_todo_remark.setText(mTodaysTodoItem.getRemark());
 
 			// 绘制预计番茄钟数
 			int count = 0;
-			for (int i = 0; i < mTodaysTodoItem.getTomato().length; i++) {
-				if (mTodaysTodoItem.getTomato()[i] > 0) {
+			int[] tomato = {
+					mTodaysTodoItem.getFirstEstimate(), 
+					mTodaysTodoItem.getSecondEstimate(),
+					mTodaysTodoItem.getThirdEstimate() };
+			for (int i = 0; i < tomato.length; i++) {
+				if (tomato[i] > 0) {
 					for (int v = 0; v < 7; v++) {
 						View square = getActivity().getLayoutInflater()
 								.inflate(tomatoTimerLayout[i], null);
 						// 显示计划的番茄钟
-						if (v < mTodaysTodoItem.getTomato()[i]) {
+						if (v < tomato[i]) {
 							square.findViewById(R.id.plan).setVisibility(
 									View.VISIBLE);
 							// 给已经完成的番茄钟搭上×
-							if (count < mTodaysTodoItem.getTomatoDone())
+							if (count < mTodaysTodoItem.getFinishNumber())
 								square.findViewById(R.id.done).setVisibility(
 										View.VISIBLE);
 							count++;

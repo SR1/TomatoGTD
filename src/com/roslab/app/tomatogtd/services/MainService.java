@@ -107,8 +107,8 @@ public class MainService extends Service implements MainControllerInterface,
 
 	@Override
 	public ArrayList<TodaysTodoItem> getTodayTodsList() {
-		DatabaseOperator dbo = new DatabaseOperator(this);
-		return dbo.queryTodaysTodoList();
+		DatabaseOperator databaseOperator = new DatabaseOperator(this);
+		return databaseOperator.getTodaysTodoList();
 	}
 
 	@Override
