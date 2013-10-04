@@ -8,7 +8,6 @@ import java.util.Locale;
 import com.roslab.app.tomatogtd.database.AddTodosOperatorBuilder.CannotBeNullException;
 import com.roslab.app.tomatogtd.enity.AllTodosItem;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
-import com.roslab.app.tomatogtd.model.DatabaseOperatorModel;
 import com.roslab.app.tomatogtd.tool.RandomColorId;
 
 import android.content.ContentValues;
@@ -62,7 +61,7 @@ public class DatabaseOperator implements DatabaseOperatorModel {
 
 		final String queryTodaysTodoList = "SELECT date today, todaysTodos.id, allTodoId, "
 				+ "subject, remark, addTime, dueTime, firstEstimate, "
-				+ "secondEstimate, thirdEstimate, "
+				+ "secondEstimate, thirdEstimate, finishNumber, "
 				+ "innerInterrupt, outterInterrupt "
 				+ "FROM allTodos, todaysTodos "
 				+ "WHERE allTodoId=allTodos.id "
@@ -84,6 +83,7 @@ public class DatabaseOperator implements DatabaseOperatorModel {
 		int firstEstimateIndex = cursor.getColumnIndex("firstEstimate");
 		int secondEstimateIndex = cursor.getColumnIndex("secondEstimate");
 		int thirdEstimateIndex = cursor.getColumnIndex("thirdEstimate");
+		int finishNumberIndex = cursor.getColumnIndex("finishNumber");
 		int innerInterruptIndex = cursor.getColumnIndex("innerInterrupt");
 		int outterInterruptIndex = cursor.getColumnIndex("outterInterrupt");
 
@@ -101,6 +101,7 @@ public class DatabaseOperator implements DatabaseOperatorModel {
 			item.setFirstEstimate(cursor.getInt(firstEstimateIndex));
 			item.setSecondEstimate(cursor.getInt(secondEstimateIndex));
 			item.setThirdEstimate(cursor.getInt(thirdEstimateIndex));
+			item.setFinishNumber(cursor.getInt(finishNumberIndex));
 			item.setInnerInterrupt(cursor.getInt(innerInterruptIndex));
 			item.setOutterInterrupt(cursor.getInt(outterInterruptIndex));
 			item.setColor(RandomColorId.getColorId(i));

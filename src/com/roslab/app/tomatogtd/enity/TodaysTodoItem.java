@@ -59,6 +59,8 @@ public class TodaysTodoItem {
 		return dueTime;
 	}
 	public void setDueTime(String dueTime) {
+		if(dueTime.equals("0"))
+			dueTime = "----/--/-- --:--";
 		this.dueTime = dueTime;
 	}
 	public int getFirstEstimate() {

@@ -16,11 +16,14 @@
     <!-- 今日待办操作 -->
     <string name="todays_todo_outter_interrupt">外部中断</string>
     <string name="todays_todo_inner_interrupt">内部中断</string>
-    <string name="todays_todo_start_tomato_timer">番茄钟已启动</string>
+    <string name="todays_todo_start_tomato_timer">启动番茄钟</string>
     <string name="todays_todo_giveup_tomato_timer">放弃番茄钟</string>
     <string name="todays_todo_giveup_tomato_timer_notice">番茄钟已废弃</string>
     <string name="todays_todo_timer_remain_message" formatted="false">专注 %s: %s 剩余</string>
-     
+    
+    <!-- 提示语 -->
+    <string name="please_start_timer">启动一个番茄钟才能标记中断哦~</string>
+    
     <!-- 引导界面 -->
     <string name="guide_main_text">专注</string>
     <string name="guide_sub_text">相信当下的力量</string>

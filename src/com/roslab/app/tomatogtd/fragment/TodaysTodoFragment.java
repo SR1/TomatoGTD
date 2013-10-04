@@ -9,6 +9,7 @@ import com.roslab.app.tomatogtd.adapter.TodaysTodoAdapter;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
+import com.roslab.app.tomatogtd.interfaces.OnOperationDoneListener;
 import com.roslab.app.tomatogtd.model.ScreenOnModel;
 import com.roslab.app.tomatogtd.services.MainService;
 import com.roslab.app.tomatogtd.tool.Tools;
@@ -20,12 +21,14 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TodaysTodoFragment extends Fragment implements OnValidateListener,
-		OnLongClickListener {
+		OnLongClickListener, OnClickListener {
 
 	public static final String TAG = "TodaysTodoFragment";
 
@@ -71,6 +74,9 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		outterInterrupt = (TextView) view
 				.findViewById(R.id.todays_todo_outter_interrupt);
 
+		innerInterrupt.setOnClickListener(this);
+		outterInterrupt.setOnClickListener(this);
+
 		start.setOnLongClickListener(this);
 		giveup.setOnLongClickListener(this);
 		innerInterrupt.setOnLongClickListener(this);
@@ -91,6 +97,21 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 
 		todoListState = mService.getTodoListState();
 		screenOn = new ScreenOnModel(getActivity());
+	}
+	
+	/***
+	 * 更新待办列表数据
+	 * @param isUpdateCurrentItem 是否显示回原来的位置
+	 */
+	private void updateTodoList(boolean isUpdateCurrentItem){
+		int current = 0;
+		if(isUpdateCurrentItem)
+			current = vp.getCurrentItem();
+		todolist = mService.getTodayTodsList();
+		todaysTodoAdapter = new TodaysTodoAdapter(
+				getFragmentManager(), todolist);
+		vp.setAdapter(todaysTodoAdapter);
+		vp.setCurrentItem(current, false);	
 	}
 
 	/***
@@ -146,7 +167,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		start.setVisibility(View.VISIBLE);
 		giveup.setVisibility(View.GONE);
 		timerText.setVisibility(View.GONE);
-		
+
 		screenOn.off();
 	}
 
@@ -159,7 +180,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		giveup.setVisibility(View.VISIBLE);
 		timerText.setVisibility(View.VISIBLE);
 		timerText.setText(Tools.TransToString(timerState.getRemainTime()));
-		
+
 		screenOn.on();
 	}
 
@@ -206,21 +227,85 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 
 	@Override
 	public boolean onLongClick(View v) {
-		start.getId();
 		switch (v.getId()) {
 		case R.id.todays_todo_start_tomato_timer:
 			mService.startTimer();
 			handler.sendEmptyMessage(ValidateViewHandler.UPDATE_NOW);
 			break;
-			
+
 		case R.id.todays_todo_giveup_tomato_timer:
 			mService.stopTimer();
 			handler.sendEmptyMessage(ValidateViewHandler.UPDATE_NOW);
 			break;
-
+		case R.id.todays_todo_inner_interrupt:
+			if (mService.getTimerState().isStart()) {
+				mService.addInnerInterrupt(todolist.get(vp.getCurrentItem())
+						.getId(), new OnOperationDoneListener() {
+					@Override
+					public void onOperationDone() {
+						updateTodoList(true);
+					}
+				});
+			} else {
+				Toast.makeText(getActivity(),
+						getActivity().getString(R.string.please_start_timer),
+						Toast.LENGTH_SHORT).show();
+			}
+			break;
+		case R.id.todays_todo_outter_interrupt:
+			if (mService.getTimerState().isStart()) {
+				mService.addOutterInterrupt(todolist.get(vp.getCurrentItem())
+						.getId(), new OnOperationDoneListener() {
+					@Override
+					public void onOperationDone() {
+						updateTodoList(true);
+					}
+				});
+			} else {
+				Toast.makeText(getActivity(),
+						getActivity().getString(R.string.please_start_timer),
+						Toast.LENGTH_SHORT).show();
+			}
+			break;
 		default:
 			break;
 		}
 		return true;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.todays_todo_inner_interrupt:
+			if (mService.getTimerState().isStart()) {
+				mService.addInnerInterrupt(todolist.get(vp.getCurrentItem())
+						.getId(), new OnOperationDoneListener() {
+					@Override
+					public void onOperationDone() {
+						updateTodoList(true);
+					}
+				});
+			} else {
+				Toast.makeText(getActivity(),
+						getActivity().getString(R.string.please_start_timer),
+						Toast.LENGTH_SHORT).show();
+			}
+		case R.id.todays_todo_outter_interrupt:
+			if (mService.getTimerState().isStart()) {
+				mService.addOutterInterrupt(todolist.get(vp.getCurrentItem())
+						.getId(), new OnOperationDoneListener() {
+					@Override
+					public void onOperationDone() {
+						updateTodoList(true);
+					}
+				});
+			} else {
+				Toast.makeText(getActivity(),
+						getActivity().getString(R.string.please_start_timer),
+						Toast.LENGTH_SHORT).show();
+			}
+		default:
+			break;
+		}
 	}
 }

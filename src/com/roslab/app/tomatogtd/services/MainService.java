@@ -13,6 +13,7 @@ import com.roslab.app.tomatogtd.database.DatabaseOperator;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
+import com.roslab.app.tomatogtd.interfaces.OnOperationDoneListener;
 import com.roslab.app.tomatogtd.model.MediaModel;
 import com.roslab.app.tomatogtd.model.Timer;
 import com.roslab.app.tomatogtd.model.TimerModelInterface.OnTimeUpListener;
@@ -119,5 +120,21 @@ public class MainService extends Service implements MainControllerInterface,
 			media.playChime();
 			isGiveUpTimer = false;
 		}
+	}
+
+	@Override
+	public void addInnerInterrupt(int todaysTodoId, OnOperationDoneListener listener) {
+		DatabaseOperator databaseOperator = new DatabaseOperator(this);
+		databaseOperator.addInnerInterrupt(todaysTodoId);
+		if(listener!=null)
+			listener.onOperationDone();
+	}
+
+	@Override
+	public void addOutterInterrupt(int todaysTodoId, OnOperationDoneListener listener) {
+		DatabaseOperator databaseOperator = new DatabaseOperator(this);
+		databaseOperator.addOutterInterrupt(todaysTodoId);
+		if(listener!=null)
+			listener.onOperationDone();
 	}
 }

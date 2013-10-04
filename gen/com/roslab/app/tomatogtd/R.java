@@ -1540,10 +1540,13 @@ containing a value of this type.
         public static final int default_date_format=0x7f0a0010;
         /**  引导界面 
          */
-        public static final int guide_main_text=0x7f0a001a;
-        public static final int guide_sub_text=0x7f0a001b;
+        public static final int guide_main_text=0x7f0a001b;
+        public static final int guide_sub_text=0x7f0a001c;
         public static final int hello_world=0x7f0a000e;
         public static final int menu_settings=0x7f0a000f;
+        /**  提示语 
+         */
+        public static final int please_start_timer=0x7f0a001a;
         public static final int todays_todo_end_date=0x7f0a0012;
         public static final int todays_todo_giveup_tomato_timer=0x7f0a0017;
         public static final int todays_todo_giveup_tomato_timer_notice=0x7f0a0018;

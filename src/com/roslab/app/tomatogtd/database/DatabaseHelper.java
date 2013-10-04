@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String TAG = "DatabaseHelper";
 	
     private static final String DATABASE_NAME = "tomato.db";
-    private static final int DATABASE_VERSION = 0;
+    private static final int DATABASE_VERSION = 1;
 	
 	public static final String TABLE_ALLTODOS = "allTodos";
 	public static final String TABLE_ALLTODOS_ID = "id";
@@ -56,6 +56,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		"finishNumber INTEGER NOT NULL DEFAULT 0, " +
 		"innerInterrupt INTEGER NOT NULL DEFAULT 0, " +
 		"outterInterrupt INTEGER NOT NULL DEFAULT 0);";
+	
+	private static final String CREATE_SAMPLE_DATA_1 = 
+			"INSERT INTO allTodos(subject) VALUES('创建一般待办');";
+	private static final String CREATE_SAMPLE_DATA_2 = 
+			"INSERT INTO allTodos(subject, remark) VALUES('有备注的待办', '看这里看这里，这是备注');";
+	private static final String CREATE_SAMPLE_DATA_3 = 
+			"INSERT INTO allTodos(subject, remark, dueTime) VALUES('有备注和时间的待办', '除了备注还有时间哟！','2013-10-30');";
+	private static final String CREATE_SAMPLE_DATA_4 = 
+			"INSERT INTO todaysTodos(allTodoId, firstEstimate) VALUES(1,3);";
+	private static final String CREATE_SAMPLE_DATA_5 = 
+			"INSERT INTO todaysTodos(allTodoId, firstEstimate, secondEstimate) VALUES(2,2,3);";
+	private static final String CREATE_SAMPLE_DATA_6 = 
+			"INSERT INTO todaysTodos(allTodoId, firstEstimate, secondEstimate, thirdEstimate, finishNumber) VALUES(3,2,3,2,4);";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -65,6 +78,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     	Log.v(TAG, "onCreate--->");
         db.execSQL(CREATE_TABLE_ALLTODOS);
         db.execSQL(CREATE_TABLE_TODAYSTODOS);
+        db.execSQL(CREATE_SAMPLE_DATA_1);
+        db.execSQL(CREATE_SAMPLE_DATA_2);
+        db.execSQL(CREATE_SAMPLE_DATA_3);
+        db.execSQL(CREATE_SAMPLE_DATA_4);
+        db.execSQL(CREATE_SAMPLE_DATA_5);
+        db.execSQL(CREATE_SAMPLE_DATA_6);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion,

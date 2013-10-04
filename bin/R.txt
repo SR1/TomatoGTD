@@ -481,10 +481,11 @@ int string abs__shareactionprovider_share_with 0x7f0a0006
 int string abs__shareactionprovider_share_with_application 0x7f0a0007
 int string app_name 0x7f0a000d
 int string default_date_format 0x7f0a0010
-int string guide_main_text 0x7f0a001a
-int string guide_sub_text 0x7f0a001b
+int string guide_main_text 0x7f0a001b
+int string guide_sub_text 0x7f0a001c
 int string hello_world 0x7f0a000e
 int string menu_settings 0x7f0a000f
+int string please_start_timer 0x7f0a001a
 int string todays_todo_end_date 0x7f0a0012
 int string todays_todo_giveup_tomato_timer 0x7f0a0017
 int string todays_todo_giveup_tomato_timer_notice 0x7f0a0018

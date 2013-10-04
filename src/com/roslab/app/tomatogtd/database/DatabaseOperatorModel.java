@@ -1,4 +1,4 @@
-package com.roslab.app.tomatogtd.model;
+package com.roslab.app.tomatogtd.database;
 
 import java.util.ArrayList;
 
