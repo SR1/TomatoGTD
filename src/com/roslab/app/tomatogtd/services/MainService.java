@@ -182,4 +182,16 @@ public class MainService extends Service implements MainControllerInterface,
 	public void removeValidateViewHandler(ValidateViewHandler handler) {
 		this.handler = null;
 	}
+
+	@Override
+	public boolean addTodos(String subject, String remark) {
+		if (subject == null || "".equals(subject)) {
+			Toast.makeText(this,
+					getResources().getString(R.string.please_enter_subject),
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		DatabaseOperator databaseOperator = new DatabaseOperator(this);
+		return databaseOperator.addTodo(subject, remark, 0);
+	}
 }

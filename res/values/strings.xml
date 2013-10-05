@@ -23,9 +23,18 @@
     
     <!-- 提示语 -->
     <string name="please_start_timer">启动一个番茄钟才能标记中断哦~</string>
+    <string name="please_enter_subject">哎呀，主题忘了填了啦！</string>
     
     <!-- 引导界面 -->
     <string name="guide_main_text">专注</string>
     <string name="guide_sub_text">相信当下的力量</string>
+    
+    <!-- 添加待办页面 -->
+    <string name="add_title">添加待办事项</string>
+    <string name="add_subject">一句话说说你想做什么</string>
+    <string name="add_unplan">*计划外事项</string>
+    <string name="add_remark">一句话说不完？那就再啰嗦几句呗！</string>
+    <string name="add_sumbit">添加待办</string>
+    <string name="add_cancel">取消添加</string>
     
 </resources>

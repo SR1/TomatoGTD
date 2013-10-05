@@ -60,6 +60,14 @@ public interface MainControllerInterface {
 	public void addOutterInterrupt(int todaysTodoId);
 	
 	/***
+	 * 添加待办事项
+	 * @param subject 待办事项的主题
+	 * @param remark 待办事项的备注
+	 * @return 操作是否成功
+	 */
+	public boolean addTodos(String subject, String remark);
+	
+	/***
 	 * 注册刷新界面的handler
 	 * @param handler
 	 */

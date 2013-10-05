@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:minWidth="280dp"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_title"
+        android:textColor="@color/flat_text"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/addTodosSubject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/add_subject" />
+
+        <TextView
+            android:id="@+id/addTodosUnplan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_unplan"
+            android:textColor="@color/flat_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/addTodosRemark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:hint="@string/add_remark"
+        android:lines="3" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/addSubmit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_sumbit" />
+
+        <Button
+            android:id="@+id/addCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_cancel" />
+    </LinearLayout>
+
+</LinearLayout>

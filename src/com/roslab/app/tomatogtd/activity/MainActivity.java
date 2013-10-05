@@ -4,15 +4,20 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.fragment.TodaysTodoFragment;
 import com.roslab.app.tomatogtd.services.MainService;
+import com.roslab.app.tomatogtd.view.AddTodosDialog;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class MainActivity extends FragmentActivity {
-	
+
 	public static final String TAG = "MainActivity";
-	
+
 	private SlidingMenu menu;
 
 	/**
@@ -36,7 +41,7 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setTitle("main");
 		initialMenu();
-		if(MainService.getController(this)!=null)
+		if (MainService.getController(this) != null)
 			Log.v(TAG, "onCreate-->get MainService");
 	}
 
@@ -55,6 +60,18 @@ public class MainActivity extends FragmentActivity {
 
 		// 设置滑动菜单的视图界面
 		menu.setMenu(R.layout.activity_main_menu);
+		Button btn = (Button) findViewById(R.id.addTodosButton);
+		btn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (menu.isMenuShowing()) {
+					menu.showContent();
+				}
+				Dialog a = new AddTodosDialog(MainActivity.this);
+				a.show();
+			}
+		});
 		// getSupportFragmentManager().beginTransaction().replace(R.id.menu_frame,
 		// new SampleListFragment()).commit();
 	}
