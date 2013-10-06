@@ -57,7 +57,6 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 	 * 初始化、设置组件
 	 */
 	private void initializeComponent(View view) {
-
 		// 实例化组件
 		vp = (ViewPager) view.findViewById(R.id.viewpager);
 		mIndicator = (UnderlinePageIndicator) view.findViewById(R.id.indicator);
@@ -107,7 +106,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		if (isUpdateCurrentItem)
 			current = vp.getCurrentItem();
 		todolist = mService.getTodayTodsList();
-		todaysTodoAdapter = new TodaysTodoAdapter(getFragmentManager(),
+		todaysTodoAdapter = new TodaysTodoAdapter(getChildFragmentManager(),
 				todolist);
 		vp.setAdapter(todaysTodoAdapter);
 		if(current>todolist.size())
@@ -120,9 +119,9 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 	 * 根据数据初始化组件
 	 */
 	public void initializeComponentState() {
-		vp.setAdapter(new TodaysTodoAdapter(getFragmentManager(), todolist));
 		todaysTodoAdapter = new TodaysTodoAdapter(getFragmentManager(),
 				todolist);
+		vp.setAdapter(todaysTodoAdapter);
 		mIndicator.setViewPager(vp);
 		mIndicator.setFades(false);
 	}

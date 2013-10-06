@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="完成了不起的工作" />
+
+    <Button
+        android:id="@+id/todaysTodosButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="今日待办" />
+
+    <Button
+        android:id="@+id/addTodosButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加待办" />
+
+    <Button
+        android:id="@+id/chooseTodoButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="选择今天待办" />
+
+</LinearLayout>

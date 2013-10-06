@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TomatoGTD</string>
+    <string name="app_name">番茄+</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     
@@ -36,5 +36,8 @@
     <string name="add_remark">一句话说不完？那就再啰嗦几句呗！</string>
     <string name="add_sumbit">添加待办</string>
     <string name="add_cancel">取消添加</string>
+    
+    <!-- PK选出今日待办 -->
+    <string name="choose_guide_text">淘汰赛，让不重要的让位。</string>
     
 </resources>

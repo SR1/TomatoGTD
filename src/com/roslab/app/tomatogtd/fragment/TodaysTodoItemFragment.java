@@ -27,13 +27,11 @@ public class TodaysTodoItemFragment extends Fragment {
 	public static TodaysTodoItemFragment newInstance(TodaysTodoItem todaysTodoItem) {
 		mTodaysTodoFragment = new TodaysTodoItemFragment();
 		mTodaysTodoFragment.mTodaysTodoItem = todaysTodoItem;
-
 		Log.v(TAG, "newInstance-->");
 		return mTodaysTodoFragment;
 	}
 
 	protected void initData() {
-
 		if (mTodaysTodoItem != null) {
 			color = getResources().getColor(mTodaysTodoItem.getColor());
 
