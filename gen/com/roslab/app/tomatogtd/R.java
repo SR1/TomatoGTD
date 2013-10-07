@@ -1550,27 +1550,28 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f0a0007;
-        public static final int add_cancel=0x7f0a0023;
-        public static final int add_remark=0x7f0a0021;
-        public static final int add_subject=0x7f0a001f;
-        public static final int add_sumbit=0x7f0a0022;
+        public static final int add_cancel=0x7f0a0024;
+        public static final int add_remark=0x7f0a0022;
+        public static final int add_subject=0x7f0a0020;
+        public static final int add_sumbit=0x7f0a0023;
         /**  添加待办页面 
          */
-        public static final int add_title=0x7f0a001e;
-        public static final int add_unplan=0x7f0a0020;
+        public static final int add_title=0x7f0a001f;
+        public static final int add_unplan=0x7f0a0021;
         public static final int app_name=0x7f0a000d;
         /**  PK选出今日待办 
          */
-        public static final int choose_guide_text=0x7f0a0024;
+        public static final int choose_guide_text=0x7f0a0025;
         /**  默认显示值 
          */
         public static final int default_date_format=0x7f0a0010;
         /**  引导界面 
          */
-        public static final int guide_main_text=0x7f0a001c;
-        public static final int guide_sub_text=0x7f0a001d;
+        public static final int guide_main_text=0x7f0a001d;
+        public static final int guide_sub_text=0x7f0a001e;
         public static final int hello_world=0x7f0a000e;
         public static final int menu_settings=0x7f0a000f;
+        public static final int please_add_new_todos=0x7f0a001c;
         public static final int please_enter_subject=0x7f0a001b;
         /**  提示语 
          */

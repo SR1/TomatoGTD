@@ -13,6 +13,7 @@ import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.activity.ValidateViewHandler;
 import com.roslab.app.tomatogtd.controler.MainControllerInterface;
 import com.roslab.app.tomatogtd.database.DatabaseOperator;
+import com.roslab.app.tomatogtd.enity.AllTodosItem;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
@@ -193,5 +194,11 @@ public class MainService extends Service implements MainControllerInterface,
 		}
 		DatabaseOperator databaseOperator = new DatabaseOperator(this);
 		return databaseOperator.addTodo(subject, remark, 0);
+	}
+
+	@Override
+	public ArrayList<AllTodosItem> getAllUnfinishTodos() {
+		DatabaseOperator databaseOperator = new DatabaseOperator(this);
+		return databaseOperator.getAllUndoneTodos();
 	}
 }

@@ -3,6 +3,7 @@ package com.roslab.app.tomatogtd.controler;
 import java.util.ArrayList;
 
 import com.roslab.app.tomatogtd.activity.ValidateViewHandler;
+import com.roslab.app.tomatogtd.enity.AllTodosItem;
 import com.roslab.app.tomatogtd.enity.TimerState;
 import com.roslab.app.tomatogtd.enity.TodaysTodoItem;
 import com.roslab.app.tomatogtd.enity.TodoListState;
@@ -66,6 +67,12 @@ public interface MainControllerInterface {
 	 * @return 操作是否成功
 	 */
 	public boolean addTodos(String subject, String remark);
+	
+	/***
+	 * 获取所有未完成待办
+	 * @return 所有未完成待办列表，长度为0时表示列表空
+	 */
+	public ArrayList<AllTodosItem> getAllUnfinishTodos();
 	
 	/***
 	 * 注册刷新界面的handler

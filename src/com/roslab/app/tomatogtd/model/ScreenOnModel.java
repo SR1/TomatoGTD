@@ -1,7 +1,5 @@
 package com.roslab.app.tomatogtd.model;
 
-import android.app.Activity;
-import android.app.Service;
 import android.content.Context;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
@@ -12,15 +10,8 @@ public class ScreenOnModel {
 	private WakeLock wakeLock;
 	private boolean isOn = false;
 
-	public ScreenOnModel(Activity activity) {
-		powerManager = (PowerManager) activity
-				.getSystemService(Context.POWER_SERVICE);
-		wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK,
-				"Screen On Lock");
-	}
-
-	public ScreenOnModel(Service service) {
-		powerManager = (PowerManager) service
+	public ScreenOnModel(Context context) {
+		powerManager = (PowerManager) context
 				.getSystemService(Context.POWER_SERVICE);
 		wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK,
 				"Screen On Lock");
