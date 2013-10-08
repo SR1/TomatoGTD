@@ -69,6 +69,14 @@ public interface MainControllerInterface {
 	public boolean addTodos(String subject, String remark);
 	
 	/***
+	 * 添加待办事项到今日待办列表中
+	 * @param id 待办事项id
+	 * @param firstEstimate 第一次预估使用的番茄数
+	 * @return 操作是否成功
+	 */
+	public boolean addTodaysTodos(int allTodoId, int firstEstimate);
+	
+	/***
 	 * 获取所有未完成待办
 	 * @return 所有未完成待办列表，长度为0时表示列表空
 	 */

@@ -40,5 +40,7 @@
     
     <!-- PK选出今日待办 -->
     <string name="choose_guide_text">淘汰赛，让不重要的让位。</string>
+    <string name="choose_add_to_todays_todo">添加到今日待办</string>
+    <string name="choose_restart">重新开始新的一轮</string>
     
 </resources>
