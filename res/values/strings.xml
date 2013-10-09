@@ -39,8 +39,12 @@
     <string name="add_cancel">取消添加</string>
     
     <!-- PK选出今日待办 -->
-    <string name="choose_guide_text">淘汰赛，让不重要的让位。</string>
+    <string name="choose_add_title">添加到今日待办列表</string>
+    <string name="choose_add_message">今天要花多少个番茄钟在『%s』上？</string>
+    <string name="choose_add_hint">建议最多不超过7个~</string>
+    <string name="choose_add_message">今天要花多少个番茄钟在『%s』上？</string>
     <string name="choose_add_to_todays_todo">添加到今日待办</string>
-    <string name="choose_restart">重新开始新的一轮</string>
+    <string name="choose_add_restart">重新开始新的一轮</string>
+    <string name="choose_guide_text">淘汰赛，让不重要的让位。</string>
     
 </resources>

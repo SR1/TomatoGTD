@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.enity.AllTodosItem;
 import com.roslab.app.tomatogtd.services.MainService;
+import com.roslab.app.tomatogtd.view.AddTodaysTodosDialog;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,14 +29,13 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 	int next;
 	int addAllTodosId;
 	int firstEstimate;
+	int current = -1;
 
 	/***
 	 * 声明组件
 	 */
 	TextView choose1;
 	TextView choose2;
-	Button add1;
-	Button add2;
 
 	/***
 	 * 初始化、设置组件
@@ -43,13 +43,9 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 	private void initializeComponent(View view) {
 		choose1 = (TextView) view.findViewById(R.id.choose_todos_1);
 		choose2 = (TextView) view.findViewById(R.id.choose_todos_2);
-		add1 = (Button) view.findViewById(R.id.choose_add_todos_1);
-		add2 = (Button) view.findViewById(R.id.choose_add_todos_2);
 
 		choose1.setOnClickListener(this);
 		choose2.setOnClickListener(this);
-		add1.setOnClickListener(this);
-		add2.setOnClickListener(this);
 
 	}
 
@@ -79,11 +75,13 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 		choose1.setText(allUndone.get(0).getSubject());
 		choose1.setBackgroundColor(getResources().getColor(
 				allUndone.get(0).getColor()));
+		choose1.setTag(0);
 		choose2.setText(allUndone.get(1).getSubject());
 		choose2.setBackgroundColor(getResources().getColor(
 				allUndone.get(1).getColor()));
 		choose1.setVisibility(View.VISIBLE);
 		choose2.setVisibility(View.VISIBLE);
+		choose2.setTag(1);
 		next = 2;
 
 	}
@@ -99,13 +97,13 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 			textView.setText(item.getSubject());
 			textView.setBackgroundColor(getResources()
 					.getColor(item.getColor()));
+			textView.setTag(next);
 			next++;
 		} else if (next == allUndone.size()) {
 			textView.setVisibility(View.GONE);
-			AllTodosItem item = allUndone.get(next-1);
-			addAllTodosId = item.getId();
-			firstEstimate = 3;
-			next++;
+			AllTodosItem item = allUndone.get(current);
+			Dialog dialog = AddTodaysTodosDialog.newInstance(getActivity(), item);
+			dialog.show();
 		}
 	}
 
@@ -129,16 +127,13 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.choose_todos_1:
+			current = (Integer)choose2.getTag();
 			next(choose1);
 			break;
 		case R.id.choose_todos_2:
+			current = (Integer)choose2.getTag();
 			next(choose2);
 			break;
-		case R.id.choose_add_todos_1:
-		case R.id.choose_add_todos_2:
-			mService.addTodaysTodos(addAllTodosId, firstEstimate);
-			initializeData();
-			initializeView();
 		default:
 			break;
 		}

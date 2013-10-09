@@ -14,24 +14,6 @@
             android:layout_height="0dp"
             android:layout_weight="1" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/choose_add_todos_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/choose_add_to_todays_todo" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/choose_restart" />
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/choose_todos_1"
                 android:layout_width="match_parent"
@@ -45,24 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:orientation="vertical" >
-
-                <Button
-                    android:id="@+id/choose_add_todos_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/choose_add_to_todays_todo" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/choose_restart" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/choose_todos_2"
