@@ -129,7 +129,7 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 			next(choose1);
 			break;
 		case R.id.choose_todos_2:
-			current = (Integer) choose2.getTag();
+			current = (Integer) choose1.getTag();
 			next(choose2);
 			break;
 		default:

@@ -3,12 +3,9 @@ package com.roslab.app.tomatogtd.fragment;
 import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.enity.AllTodosItem;
 import com.roslab.app.tomatogtd.services.MainService;
-import com.roslab.app.tomatogtd.view.AddTodaysTodosDialog;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;

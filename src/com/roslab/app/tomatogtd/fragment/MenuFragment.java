@@ -2,7 +2,6 @@ package com.roslab.app.tomatogtd.fragment;
 
 import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.interfaces.MenuOperation;
-import com.roslab.app.tomatogtd.view.AddTodosDialog;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -55,7 +54,7 @@ public class MenuFragment extends Fragment implements OnClickListener{
 					.replace(R.id.content_frame, new TodaysTodoFragment()).commit();
 			break;
 		case R.id.addTodosButton:
-			new AddTodosDialog(getActivity()).show();
+			AddTodosFragment.newInstance().show(getFragmentManager(), "addTodos");
 			break;
 		case R.id.chooseTodoButton:
 			getFragmentManager().beginTransaction()
