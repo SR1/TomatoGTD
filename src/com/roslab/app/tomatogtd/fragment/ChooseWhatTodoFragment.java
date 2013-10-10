@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import com.roslab.app.tomatogtd.R;
 import com.roslab.app.tomatogtd.enity.AllTodosItem;
 import com.roslab.app.tomatogtd.services.MainService;
-import com.roslab.app.tomatogtd.view.AddTodaysTodosDialog;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -102,8 +100,8 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 		} else if (next == allUndone.size()) {
 			textView.setVisibility(View.GONE);
 			AllTodosItem item = allUndone.get(current);
-			Dialog dialog = AddTodaysTodosDialog.newInstance(getActivity(), item);
-			dialog.show();
+			AddTodaysTodoFragment.newInstance(item).show(getFragmentManager(),
+					"AddTodaysTodoFragment");
 		}
 	}
 
@@ -127,11 +125,11 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.choose_todos_1:
-			current = (Integer)choose2.getTag();
+			current = (Integer) choose2.getTag();
 			next(choose1);
 			break;
 		case R.id.choose_todos_2:
-			current = (Integer)choose2.getTag();
+			current = (Integer) choose2.getTag();
 			next(choose2);
 			break;
 		default:
