@@ -24,6 +24,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		OnLongClickListener, OnClickListener {
@@ -98,6 +99,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 
 	/***
 	 * 更新待办列表数据
+	 * 
 	 * @param isUpdateCurrentItem
 	 *            是否显示回原来的位置
 	 */
@@ -109,7 +111,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		todaysTodoAdapter = new TodaysTodoAdapter(getChildFragmentManager(),
 				todolist);
 		vp.setAdapter(todaysTodoAdapter);
-		if(current>todolist.size())
+		if (current > todolist.size())
 			current = todolist.size();
 		vp.setCurrentItem(current, false);
 		Log.v(TAG, "updateTodoList-->" + todolist);
@@ -119,6 +121,13 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 	 * 根据数据初始化组件
 	 */
 	public void initializeComponentState() {
+		if (todolist.size() == 0) {
+			getFragmentManager()
+					.beginTransaction()
+					.replace(R.id.content_frame,
+							ChooseWhatTodoFragment.newInstance()).commit();
+			return;
+		}
 		todaysTodoAdapter = new TodaysTodoAdapter(getFragmentManager(),
 				todolist);
 		vp.setAdapter(todaysTodoAdapter);
@@ -216,7 +225,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		stopUpdateView();
 		saveState();
 		super.onPause();
-		Log.v(TAG, "onPause-->"+vp.getCurrentItem());
+		Log.v(TAG, "onPause-->" + vp.getCurrentItem());
 	}
 
 	@Override
