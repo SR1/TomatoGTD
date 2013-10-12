@@ -118,6 +118,12 @@ public interface DatabaseOperatorModel {
 	public ArrayList<AllTodosItem> getAllUndoneTodos();
 	
 	/***
+	 * 查询所有还未完成并且未加入今日待办的待办事项
+	 * @return 待办事项列表
+	 */
+	public ArrayList<AllTodosItem> getAllUndoneTodosForChoose();
+	
+	/***
 	 * 查询所有已完成的待办事项列表
 	 * @return 待办事项列表
 	 */

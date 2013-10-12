@@ -75,12 +75,18 @@ public interface MainControllerInterface {
 	 * @return 操作是否成功
 	 */
 	public boolean addTodaysTodos(int allTodoId, int firstEstimate);
-	
+
 	/***
 	 * 获取所有未完成待办
 	 * @return 所有未完成待办列表，长度为0时表示列表空
 	 */
 	public ArrayList<AllTodosItem> getAllUnfinishTodos();
+	
+	/***
+	 * 获取所有未完成且没有在今日待办的待办列表
+	 * @return 符合条件的待办列表，长度为0时表示列表空
+	 */
+	public ArrayList<AllTodosItem> getAllUnfinishTodosForChoose();
 	
 	/***
 	 * 注册刷新界面的handler

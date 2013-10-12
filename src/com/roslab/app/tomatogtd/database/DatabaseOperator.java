@@ -65,6 +65,7 @@ public class DatabaseOperator implements DatabaseOperatorModel {
 				+ "innerInterrupt, outterInterrupt "
 				+ "FROM allTodos, todaysTodos "
 				+ "WHERE allTodoId=allTodos.id "
+				+ "AND finishNumber < (firstEstimate + secondEstimate + thirdEstimate) "
 				+ "AND date=(date('now','localtime'));";
 
 		ArrayList<TodaysTodoItem> todaysTodoList = new ArrayList<TodaysTodoItem>();
@@ -442,5 +443,58 @@ public class DatabaseOperator implements DatabaseOperatorModel {
 		sqliteDatabase.close();
 		databaseHelper.close();
 		return isSuccess;
+	}
+
+	@Override
+	public ArrayList<AllTodosItem> getAllUndoneTodosForChoose() {
+
+		final String queryAllUndoneTodos = 
+				"SELECT id, subject, remark, " +
+				"addTime, dueTime, isUnPlaned " +
+				"FROM allTodos " +
+				"WHERE isDelete='false' " +
+				"AND doneTime=0 " +
+				"AND id NOT IN ( " +
+					"SELECT allTodoId " +
+					"FROM todaysTodos " +
+					"WHERE date=date('now','localtime') " +
+					"AND finishNumber < (firstEstimate + secondEstimate + thirdEstimate)" +
+					");";
+
+		ArrayList<AllTodosItem> list = new ArrayList<AllTodosItem>();
+		DatabaseHelper databaseHelper = new DatabaseHelper(context);
+		SQLiteDatabase sqliteDatabase = databaseHelper.getReadableDatabase();
+
+		Cursor cursor = sqliteDatabase.rawQuery(queryAllUndoneTodos, null);
+
+		int idIndex = cursor.getColumnIndex("id");
+		int subjectIndex = cursor.getColumnIndex("subject");
+		int remarkIndex = cursor.getColumnIndex("remark");
+		int addTimeIndex = cursor.getColumnIndex("addTime");
+		int dueTimeIndex = cursor.getColumnIndex("dueTime");
+		int isUnPlanedIndex = cursor.getColumnIndex("isUnPlaned");
+
+		int i = 0;
+		for (cursor.moveToFirst(); !(cursor.isAfterLast()); cursor.moveToNext()) {
+			AllTodosItem item = new AllTodosItem();
+
+			item.setId(cursor.getInt(idIndex));
+			item.setSubject(cursor.getString(subjectIndex));
+			item.setRemark(cursor.getString(remarkIndex));
+			item.setAddTime(cursor.getString(addTimeIndex));
+			item.setDueTime(cursor.getString(dueTimeIndex));
+			item.setUnPlaned(Boolean.parseBoolean(cursor.getString(isUnPlanedIndex)));
+			item.setDueTime(cursor.getString(dueTimeIndex));
+			item.setColor(RandomColorId.getColorId(i));
+
+			list.add(item);
+			i++;
+		}
+
+		// 关闭结果集和数据库
+		cursor.close();
+		sqliteDatabase.close();
+		databaseHelper.close();
+		return list;
 	}
 }

@@ -207,4 +207,10 @@ public class MainService extends Service implements MainControllerInterface,
 		DatabaseOperator databaseOperator = new DatabaseOperator(this);
 		return databaseOperator.addTodaysTodo(allTodoId, firstEstimate);
 	}
+
+	@Override
+	public ArrayList<AllTodosItem> getAllUnfinishTodosForChoose() {
+		DatabaseOperator databaseOperator = new DatabaseOperator(this);
+		return databaseOperator.getAllUndoneTodosForChoose();
+	}
 }

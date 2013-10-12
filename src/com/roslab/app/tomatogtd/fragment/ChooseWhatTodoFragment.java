@@ -52,7 +52,7 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 	 */
 	private void initializeData() {
 		mService = MainService.getController(getActivity());
-		allUndone = mService.getAllUnfinishTodos();
+		allUndone = mService.getAllUnfinishTodosForChoose();
 	}
 
 	protected void initializeView() {
