@@ -1,7 +1,6 @@
 package com.roslab.app.tomatogtd.fragment;
 
 import com.roslab.app.tomatogtd.R;
-import com.roslab.app.tomatogtd.enity.AllTodosItem;
 import com.roslab.app.tomatogtd.services.MainService;
 
 import android.os.Bundle;

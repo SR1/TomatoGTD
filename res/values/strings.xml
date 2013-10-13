@@ -25,6 +25,8 @@
     <string name="please_start_timer">启动一个番茄钟才能标记中断哦~</string>
     <string name="please_enter_subject">哎呀，主题忘了填了啦！</string>
     <string name="please_add_new_todos">好像都完成了哦！休息一下？或添加新的待办事项？</string>
+    <string name="default_error_message">好像有什么不对劲？难道是出错啦？！</string>
+    <string name="default_error_face">好像有什么不对劲？难道是出错啦？！</string>
     
     <!-- 引导界面 -->
     <string name="guide_main_text">专注</string>

@@ -24,7 +24,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 		OnLongClickListener, OnClickListener {
@@ -125,7 +124,7 @@ public class TodaysTodoFragment extends Fragment implements OnValidateListener,
 			getFragmentManager()
 					.beginTransaction()
 					.replace(R.id.content_frame,
-							ChooseWhatTodoFragment.newInstance()).commit();
+							ErrorFragment.newInstance("(\"▔□▔)", "你还没计划今天要干什么？虚度光阴可不行哦~！")).commit();
 			return;
 		}
 		todaysTodoAdapter = new TodaysTodoAdapter(getFragmentManager(),

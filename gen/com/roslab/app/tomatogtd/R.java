@@ -1422,7 +1422,7 @@ containing a value of this type.
         public static final int abs__up=0x7f06000b;
         public static final int addCancel=0x7f060046;
         public static final int addSubmit=0x7f060045;
-        public static final int addTodosButton=0x7f06004a;
+        public static final int addTodosButton=0x7f06004c;
         public static final int addTodosRemark=0x7f060044;
         public static final int addTodosSubject=0x7f060042;
         public static final int addTodosUnplan=0x7f060043;
@@ -1431,54 +1431,56 @@ containing a value of this type.
         public static final int chooseEstimate=0x7f06003f;
         public static final int chooseMessage=0x7f06003e;
         public static final int chooseRestart=0x7f060041;
-        public static final int chooseTodoButton=0x7f06004b;
+        public static final int chooseTodoButton=0x7f06004d;
         public static final int choose_todos_1=0x7f060047;
         public static final int choose_todos_2=0x7f060048;
         public static final int content_frame=0x7f06003c;
         public static final int disableHome=0x7f060009;
-        public static final int done=0x7f060061;
+        public static final int done=0x7f060063;
         public static final int edit_query=0x7f060030;
+        public static final int error_face=0x7f060049;
+        public static final int error_message=0x7f06004a;
         public static final int fullscreen=0x7f060013;
         public static final int homeAsUp=0x7f060006;
-        public static final int indicator=0x7f06004e;
+        public static final int indicator=0x7f060050;
         public static final int left=0x7f060010;
         public static final int listMode=0x7f060002;
         public static final int margin=0x7f060012;
         public static final int menu_frame=0x7f06003d;
-        public static final int menu_settings=0x7f060062;
+        public static final int menu_settings=0x7f060064;
         public static final int none=0x7f060015;
         public static final int normal=0x7f060001;
-        public static final int plan=0x7f060060;
+        public static final int plan=0x7f060062;
         public static final int right=0x7f060011;
         public static final int selected_view=0x7f060014;
         public static final int showCustom=0x7f060008;
         public static final int showHome=0x7f060005;
         public static final int showTitle=0x7f060007;
-        public static final int slidingmenumain=0x7f06005f;
+        public static final int slidingmenumain=0x7f060061;
         public static final int tabMode=0x7f060003;
-        public static final int todaysTodosButton=0x7f060049;
-        public static final int todays_todo_background=0x7f060055;
-        public static final int todays_todo_end_date=0x7f060058;
-        public static final int todays_todo_giveup_tomato_timer=0x7f060052;
-        public static final int todays_todo_inner_interrupt=0x7f060053;
-        public static final int todays_todo_outter_interrupt=0x7f060054;
-        public static final int todays_todo_remark=0x7f060059;
-        public static final int todays_todo_shield=0x7f06004f;
-        public static final int todays_todo_start_date=0x7f060057;
-        public static final int todays_todo_start_tomato_timer=0x7f060051;
-        public static final int todays_todo_timer=0x7f06004d;
-        public static final int todays_todo_timer_line=0x7f06005a;
-        public static final int todays_todo_title=0x7f060056;
-        public static final int todays_todo_tomato_1st=0x7f06005b;
-        public static final int todays_todo_tomato_2nd=0x7f06005c;
-        public static final int todays_todo_tomato_3rd=0x7f06005d;
-        public static final int todays_todo_tomato_interrupt=0x7f06005e;
-        public static final int todays_todo_top_area=0x7f060050;
+        public static final int todaysTodosButton=0x7f06004b;
+        public static final int todays_todo_background=0x7f060057;
+        public static final int todays_todo_end_date=0x7f06005a;
+        public static final int todays_todo_giveup_tomato_timer=0x7f060054;
+        public static final int todays_todo_inner_interrupt=0x7f060055;
+        public static final int todays_todo_outter_interrupt=0x7f060056;
+        public static final int todays_todo_remark=0x7f06005b;
+        public static final int todays_todo_shield=0x7f060051;
+        public static final int todays_todo_start_date=0x7f060059;
+        public static final int todays_todo_start_tomato_timer=0x7f060053;
+        public static final int todays_todo_timer=0x7f06004f;
+        public static final int todays_todo_timer_line=0x7f06005c;
+        public static final int todays_todo_title=0x7f060058;
+        public static final int todays_todo_tomato_1st=0x7f06005d;
+        public static final int todays_todo_tomato_2nd=0x7f06005e;
+        public static final int todays_todo_tomato_3rd=0x7f06005f;
+        public static final int todays_todo_tomato_interrupt=0x7f060060;
+        public static final int todays_todo_top_area=0x7f060052;
         public static final int top=0x7f060019;
         public static final int triangle=0x7f060016;
         public static final int underline=0x7f060017;
         public static final int useLogo=0x7f060004;
-        public static final int viewpager=0x7f06004c;
+        public static final int viewpager=0x7f06004e;
         public static final int wrap_content=0x7f060000;
     }
     public static final class integer {
@@ -1518,14 +1520,15 @@ containing a value of this type.
         public static final int fragment_add_todays_todos_dialogue=0x7f030019;
         public static final int fragment_add_todos_dialogue=0x7f03001a;
         public static final int fragment_choose_todos_for_today=0x7f03001b;
-        public static final int fragment_menu=0x7f03001c;
-        public static final int fragment_todays_todo=0x7f03001d;
-        public static final int fragment_todays_todo_item=0x7f03001e;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001f;
-        public static final int sherlock_spinner_item=0x7f030020;
-        public static final int slidingmenumain=0x7f030021;
-        public static final int tomato_circle=0x7f030022;
-        public static final int tomato_square=0x7f030023;
+        public static final int fragment_error=0x7f03001c;
+        public static final int fragment_menu=0x7f03001d;
+        public static final int fragment_todays_todo=0x7f03001e;
+        public static final int fragment_todays_todo_item=0x7f03001f;
+        public static final int sherlock_spinner_dropdown_item=0x7f030020;
+        public static final int sherlock_spinner_item=0x7f030021;
+        public static final int slidingmenumain=0x7f030022;
+        public static final int tomato_circle=0x7f030023;
+        public static final int tomato_square=0x7f030024;
     }
     public static final class menu {
         public static final int activity_main=0x7f0c0000;
@@ -1574,30 +1577,32 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f0a0007;
-        public static final int add_cancel=0x7f0a0024;
-        public static final int add_remark=0x7f0a0022;
-        public static final int add_subject=0x7f0a0020;
-        public static final int add_sumbit=0x7f0a0023;
+        public static final int add_cancel=0x7f0a0026;
+        public static final int add_remark=0x7f0a0024;
+        public static final int add_subject=0x7f0a0022;
+        public static final int add_sumbit=0x7f0a0025;
         /**  添加待办页面 
          */
-        public static final int add_title=0x7f0a001f;
-        public static final int add_unplan=0x7f0a0021;
+        public static final int add_title=0x7f0a0021;
+        public static final int add_unplan=0x7f0a0023;
         public static final int app_name=0x7f0a000d;
-        public static final int choose_add_hint=0x7f0a0027;
-        public static final int choose_add_message=0x7f0a0026;
-        public static final int choose_add_restart=0x7f0a0029;
+        public static final int choose_add_hint=0x7f0a0029;
+        public static final int choose_add_message=0x7f0a0028;
+        public static final int choose_add_restart=0x7f0a002b;
         /**  PK选出今日待办 
          */
-        public static final int choose_add_title=0x7f0a0025;
-        public static final int choose_add_to_todays_todo=0x7f0a0028;
-        public static final int choose_guide_text=0x7f0a002a;
+        public static final int choose_add_title=0x7f0a0027;
+        public static final int choose_add_to_todays_todo=0x7f0a002a;
+        public static final int choose_guide_text=0x7f0a002c;
         /**  默认显示值 
          */
         public static final int default_date_format=0x7f0a0010;
+        public static final int default_error_face=0x7f0a001e;
+        public static final int default_error_message=0x7f0a001d;
         /**  引导界面 
          */
-        public static final int guide_main_text=0x7f0a001d;
-        public static final int guide_sub_text=0x7f0a001e;
+        public static final int guide_main_text=0x7f0a001f;
+        public static final int guide_sub_text=0x7f0a0020;
         public static final int hello_world=0x7f0a000e;
         public static final int menu_settings=0x7f0a000f;
         public static final int please_add_new_todos=0x7f0a001c;
