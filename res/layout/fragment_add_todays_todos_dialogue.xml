@@ -10,8 +10,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/FLAT_MIDNIGHT_BLUE"
         android:text="@string/choose_add_title"
-        android:textColor="@color/flat_text"
         android:textSize="22sp" />
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:id="@+id/chooseMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/flat_text"
+            android:textColor="@color/FLAT_MIDNIGHT_BLUE"
             android:textSize="18sp" />
 
         <EditText

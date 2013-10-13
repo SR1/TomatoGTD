@@ -67,7 +67,7 @@ public class ChooseWhatTodoFragment extends Fragment implements OnClickListener 
 			choose1.setBackgroundColor(getResources().getColor(
 					allUndone.get(0).getColor()));
 			choose2.setBackgroundColor(getResources().getColor(
-					R.color.flat_text));
+					R.color.FLAT_MIDNIGHT_BLUE));
 			return;
 		}
 		choose1.setText(allUndone.get(0).getSubject());

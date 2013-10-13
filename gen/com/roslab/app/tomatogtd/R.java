@@ -1082,16 +1082,38 @@ containing a value of this type.
         public static final int default_underline_indicator_fades=0x7f07000a;
     }
     public static final class color {
+        public static final int FLAT_ALIZARIN=0x7f05001a;
+        public static final int FLAT_AMETHYST=0x7f050014;
+        public static final int FLAT_ASBESTOS=0x7f050013;
+        public static final int FLAT_BELIZE_HOLE=0x7f050019;
+        public static final int FLAT_CARROT=0x7f05001e;
+        public static final int FLAT_CLOUDS=0x7f050016;
+        public static final int FLAT_CONCRETE=0x7f050012;
+        public static final int FLAT_EMERLAND=0x7f05001c;
+        public static final int FLAT_GREEN_SEA=0x7f050021;
+        /**  flat 
+         */
+        public static final int FLAT_MIDNIGHT_BLUE=0x7f050010;
+        public static final int FLAT_NEPHRITIS=0x7f05001d;
+        public static final int FLAT_ORANGE=0x7f050023;
+        public static final int FLAT_PETER_RIVER=0x7f050018;
+        public static final int FLAT_POMEGRANATE=0x7f05001b;
+        public static final int FLAT_PUMPKIN=0x7f05001f;
+        public static final int FLAT_SILVER=0x7f050017;
+        public static final int FLAT_SUN_FLOWER=0x7f050022;
+        public static final int FLAT_TURQUOISE=0x7f050020;
+        public static final int FLAT_WET_ASPHALT=0x7f050011;
+        public static final int FLAT_WISTERIA=0x7f050015;
         public static final int abs__background_holo_dark=0x7f050003;
         public static final int abs__background_holo_light=0x7f050004;
         public static final int abs__bright_foreground_disabled_holo_dark=0x7f050007;
         public static final int abs__bright_foreground_disabled_holo_light=0x7f050008;
         public static final int abs__bright_foreground_holo_dark=0x7f050005;
         public static final int abs__bright_foreground_holo_light=0x7f050006;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f050022;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f050023;
-        public static final int abs__primary_text_holo_dark=0x7f050024;
-        public static final int abs__primary_text_holo_light=0x7f050025;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f050035;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f050036;
+        public static final int abs__primary_text_holo_dark=0x7f050037;
+        public static final int abs__primary_text_holo_light=0x7f050038;
         public static final int alert=0x7f050000;
         public static final int bgcolor_blue=0x7f05000d;
         /**  card background color 
@@ -1101,28 +1123,25 @@ containing a value of this type.
         public static final int bgcolor_yellow=0x7f05000f;
         public static final int black=0x7f05000b;
         public static final int confirm=0x7f050001;
-        public static final int default_circle_indicator_fill_color=0x7f050019;
-        public static final int default_circle_indicator_page_color=0x7f05001a;
-        public static final int default_circle_indicator_stroke_color=0x7f05001b;
-        public static final int default_line_indicator_selected_color=0x7f05001c;
-        public static final int default_line_indicator_unselected_color=0x7f05001d;
-        public static final int default_title_indicator_footer_color=0x7f05001e;
-        public static final int default_title_indicator_selected_color=0x7f05001f;
-        public static final int default_title_indicator_text_color=0x7f050020;
-        public static final int default_underline_indicator_selected_color=0x7f050021;
-        /**  flat 
-         */
-        public static final int flat_text=0x7f050010;
+        public static final int default_circle_indicator_fill_color=0x7f05002c;
+        public static final int default_circle_indicator_page_color=0x7f05002d;
+        public static final int default_circle_indicator_stroke_color=0x7f05002e;
+        public static final int default_line_indicator_selected_color=0x7f05002f;
+        public static final int default_line_indicator_unselected_color=0x7f050030;
+        public static final int default_title_indicator_footer_color=0x7f050031;
+        public static final int default_title_indicator_selected_color=0x7f050032;
+        public static final int default_title_indicator_text_color=0x7f050033;
+        public static final int default_underline_indicator_selected_color=0x7f050034;
         public static final int gray=0x7f05000a;
         public static final int info=0x7f050002;
-        public static final int vpi__background_holo_dark=0x7f050011;
-        public static final int vpi__background_holo_light=0x7f050012;
-        public static final int vpi__bright_foreground_disabled_holo_dark=0x7f050015;
-        public static final int vpi__bright_foreground_disabled_holo_light=0x7f050016;
-        public static final int vpi__bright_foreground_holo_dark=0x7f050013;
-        public static final int vpi__bright_foreground_holo_light=0x7f050014;
-        public static final int vpi__bright_foreground_inverse_holo_dark=0x7f050017;
-        public static final int vpi__bright_foreground_inverse_holo_light=0x7f050018;
+        public static final int vpi__background_holo_dark=0x7f050024;
+        public static final int vpi__background_holo_light=0x7f050025;
+        public static final int vpi__bright_foreground_disabled_holo_dark=0x7f050028;
+        public static final int vpi__bright_foreground_disabled_holo_light=0x7f050029;
+        public static final int vpi__bright_foreground_holo_dark=0x7f050026;
+        public static final int vpi__bright_foreground_holo_light=0x7f050027;
+        public static final int vpi__bright_foreground_inverse_holo_dark=0x7f05002a;
+        public static final int vpi__bright_foreground_inverse_holo_light=0x7f05002b;
         public static final int white=0x7f050009;
     }
     public static final class dimen {

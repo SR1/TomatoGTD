@@ -11,5 +11,25 @@
     <color name="bgcolor_yellow">#e4d85d</color>
     
     <!-- flat -->
-    <color name="flat_text">#34495e</color>
+    <color name="FLAT_MIDNIGHT_BLUE">#2C3E50</color>
+    <color name="FLAT_WET_ASPHALT">#34495E</color>
+    <color name="FLAT_CONCRETE">#95A5A6</color>
+    <color name="FLAT_ASBESTOS">#7F8C8D</color>
+    <color name="FLAT_AMETHYST">#9B59B6</color>
+    <color name="FLAT_WISTERIA">#8E44AD</color>
+    <color name="FLAT_CLOUDS">#ECF0F1</color>
+    <color name="FLAT_SILVER">#BDC3C7</color>
+    <color name="FLAT_PETER_RIVER">#3498DB</color>
+    <color name="FLAT_BELIZE_HOLE">#2980B9</color>
+    <color name="FLAT_ALIZARIN">#E74C3C</color>
+    <color name="FLAT_POMEGRANATE">#C0392B</color>
+    <color name="FLAT_EMERLAND">#2ECC71</color>
+    <color name="FLAT_NEPHRITIS">#27AE60</color>
+    <color name="FLAT_CARROT">#E67E22</color>
+    <color name="FLAT_PUMPKIN">#D35400</color>
+    <color name="FLAT_TURQUOISE">#1ABC9C</color>
+    <color name="FLAT_GREEN_SEA">#16A085</color>
+    <color name="FLAT_SUN_FLOWER">#F1C40F</color>
+    <color name="FLAT_ORANGE">#F39C12</color>
+    
 </resources>

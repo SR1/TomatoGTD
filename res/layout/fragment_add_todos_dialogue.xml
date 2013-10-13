@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_title"
-        android:textColor="@color/flat_text"
+        android:textColor="@color/FLAT_MIDNIGHT_BLUE"
         android:textSize="22sp" />
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_unplan"
-            android:textColor="@color/flat_text"
+            android:textColor="@color/FLAT_MIDNIGHT_BLUE"
             android:textSize="16sp" />
     </LinearLayout>
 
